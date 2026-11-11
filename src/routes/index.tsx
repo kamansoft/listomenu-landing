@@ -20,12 +20,11 @@ export const Route = createFileRoute("/")({
   component: LanguageGate,
 });
 
-// Static site: pick the visitor's language in the browser, defaulting to Spanish.
+// Spanish is the default language; English stays available via the switch.
 function LanguageGate() {
   const navigate = useNavigate();
   useEffect(() => {
-    const lang = navigator.language?.toLowerCase().startsWith("en") ? "en" : "es";
-    navigate({ to: "/$lang", params: { lang }, replace: true });
+    navigate({ to: "/$lang", params: { lang: "es" }, replace: true });
   }, [navigate]);
   return (
     <main className="flex min-h-dvh flex-col items-center justify-center gap-6 bg-background p-4">
