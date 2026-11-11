@@ -28,3 +28,6 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+- Landing site is fully static: every page is prerendered via `pages` in vite.config.ts (add new language/page paths there); no backend. Why: served as static HTML on Cloudflare.
+- Languages live under `/$lang` (es|en) with all copy in `src/lib/i18n.ts`; brand lockup/tokens mirror the listomenu-gui app. Why: keep the site multilingual and visually coherent with the app.
