@@ -72,9 +72,9 @@ const es = {
     popular: "Más elegido",
     choose: "Elegir por WhatsApp",
     plans: [
-      { id: "Emprendedor", price: "$49.000 COP", d: "Para arrancar con un punto de venta.", f: ["Toma de pedidos", "Inventario por receta", "1 dispositivo"] },
-      { id: "Negocio", price: "$89.000 COP", d: "Para el negocio que ya no para.", f: ["Todo lo de Emprendedor", "Pantalla de cocina", "Plan de producción", "Hasta 4 dispositivos"] },
-      { id: "Pro", price: "$149.000 COP", d: "Para equipos con más movimiento.", f: ["Todo lo de Negocio", "Roles y permisos de equipo", "Auditoría", "Dispositivos ilimitados"] },
+      { id: "Emprendedor", price: "$49.000 COP", d: "Para arrancar con un punto de venta.", f: ["3 dispositivos y 3 usuarios", "3 roles: mesero (crea órdenes), cocinero y administrador", "Comandas e inventario por receta", "Pantalla de cocina"] },
+      { id: "Negocio", price: "$89.000 COP", d: "Para el negocio que ya no para.", f: ["Todo lo de Emprendedor", "10 dispositivos y 10 usuarios", "Plan de producción y lista de compras"] },
+      { id: "Pro", price: "$149.000 COP", d: "Para equipos con más movimiento.", f: ["Todo lo de Negocio", "Dispositivos y usuarios ilimitados", "Roles y permisos de equipo a medida", "Auditoría", "Instalación de un pequeño servidor en tu local: funciona 100% sin internet", "Configuración de impresora tickera para órdenes y cocina (impresoras se cobran aparte)"] },
     ],
   },
   faq: {
@@ -170,9 +170,9 @@ const en: Dict = {
     popular: "Most popular",
     choose: "Choose on WhatsApp",
     plans: [
-      { id: "Starter", price: "$49,000 COP", d: "To get going with one point of sale.", f: ["Order taking", "Recipe-based inventory", "1 device"] },
-      { id: "Business", price: "$89,000 COP", d: "For the business that never stops.", f: ["Everything in Starter", "Kitchen screen", "Production plan", "Up to 4 devices"] },
-      { id: "Pro", price: "$149,000 COP", d: "For busier teams.", f: ["Everything in Business", "Team roles & permissions", "Audit log", "Unlimited devices"] },
+      { id: "Starter", price: "$49,000 COP", d: "To get going with one point of sale.", f: ["3 devices and 3 users", "3 roles: waiter (creates orders), cook and restaurant admin", "Orders and recipe-based inventory", "Kitchen screen"] },
+      { id: "Business", price: "$89,000 COP", d: "For the business that never stops.", f: ["Everything in Starter", "10 devices and 10 users", "Production plan and shopping list"] },
+      { id: "Pro", price: "$149,000 COP", d: "For busier teams.", f: ["Everything in Business", "Unlimited devices and users", "Custom team roles & permissions", "Audit log", "Small on-site server installed at your business: works 100% without internet", "Ticket printer setup for orders and kitchen (printers sold separately)"] },
     ],
   },
   faq: {
