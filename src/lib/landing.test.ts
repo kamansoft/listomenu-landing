@@ -16,10 +16,16 @@ describe("whatsapp link", () => {
 });
 
 describe("production plan", () => {
-  it("multiplies recipe amounts by planned units and sums shared ingredients", () => {
-    const needs = ingredientNeeds(DEMO_PRODUCTS, { reina: 10, cheese: 5, empanada: 0 });
-    expect(needs.find((n) => n.ingredient === "flour")?.qty).toBe(1.8);
-    expect(needs.find((n) => n.ingredient === "cheese")?.qty).toBe(0.35);
-    expect(needs.find((n) => n.ingredient === "beef")).toBeUndefined();
+  it("expands the shredded-beef filling into beef, onion and garlic", () => {
+    // 100 beef empanadas × 0.05 kg filling = 5 kg filling → 4 kg beef, 0.1 kg garlic
+    const needs = ingredientNeeds(DEMO_PRODUCTS, { beef: 100 });
+    expect(needs.find((n) => n.ingredient === "beef")?.qty).toBe(4);
+    expect(needs.find((n) => n.ingredient === "garlic")?.qty).toBe(0.1);
+  });
+  it("sums dough flour across all empanadas", () => {
+    // (10 + 10) × 0.06 kg dough × 0.6 kg flour = 0.72 kg
+    const needs = ingredientNeeds(DEMO_PRODUCTS, { beef: 10, cheese: 10 });
+    expect(needs.find((n) => n.ingredient === "flour")?.qty).toBe(0.72);
+    expect(needs.find((n) => n.ingredient === "chicken")).toBeUndefined();
   });
 });

@@ -33,6 +33,7 @@ export function Landing({ lang }: { lang: Lang }) {
         <Pains lang={lang} />
         <How lang={lang} />
         <Features lang={lang} />
+        <Kitchen lang={lang} />
         <ProductionPlan lang={lang} />
         <Who lang={lang} />
         <Pricing lang={lang} />
@@ -108,8 +109,8 @@ function Hero({ lang }: { lang: Lang }) {
           <div className="absolute -bottom-6 left-4 hidden items-center gap-3 rounded-xl border border-border bg-card p-4 shadow-panel sm:flex">
             <span className="flex size-10 items-center justify-center rounded-lg bg-success-surface text-success"><Check className="size-5" /></span>
             <div className="text-sm">
-              <p className="font-display font-bold">−120 g {dict[lang].plan.ingredients.flour}</p>
-              <p className="text-muted-foreground">−80 g {dict[lang].plan.ingredients.chicken}</p>
+              <p className="font-display font-bold">−40 g {dict[lang].plan.ingredients.beef}</p>
+              <p className="text-muted-foreground">−1 g {dict[lang].plan.ingredients.garlic}</p>
             </div>
           </div>
         </div>
@@ -204,7 +205,7 @@ function fmt(qty: number, unit: string, lang: Lang) {
 
 function ProductionPlan({ lang }: { lang: Lang }) {
   const t = dict[lang].plan;
-  const [plan, setPlan] = useState<Record<string, number>>({ reina: 40, cheese: 25, empanada: 30 });
+  const [plan, setPlan] = useState<Record<string, number>>({ beef: 120, chicken: 80, cheese: 50 });
   const needs = ingredientNeeds(DEMO_PRODUCTS, plan);
   return (
     <section className="bg-primary-surface">
@@ -241,6 +242,7 @@ function ProductionPlan({ lang }: { lang: Lang }) {
                 ))}
               </ul>
             )}
+            <p className="mt-4 text-sm text-muted-foreground">{t.note}</p>
           </div>
         </div>
       </div>
@@ -340,6 +342,29 @@ function Final({ lang }: { lang: Lang }) {
             <Mail className="size-4" /> {t.email}
           </EmailLink>
         </div>
+      </div>
+    </section>
+  );
+}
+
+function Kitchen({ lang }: { lang: Lang }) {
+  const t = dict[lang].kitchen;
+  const tones = ["bg-warning-surface text-warning", "bg-primary-surface text-primary", "bg-success-surface text-success"];
+  return (
+    <section className={`${wrap} pb-12 lg:pb-20`}>
+      <SectionTitle eyebrow={t.eyebrow} title={t.title} sub={t.body} />
+      <div className="grid gap-4 overflow-x-auto md:grid-cols-3">
+        {t.cols.map((c, i) => (
+          <div key={c} className="flex min-h-48 flex-col gap-2 rounded-xl border border-border bg-muted p-4">
+            <div className="mb-2 flex items-center justify-between">
+              <h3 className="font-bold">{c}</h3>
+              <span className={`rounded-full px-2 py-0.5 text-xs font-bold ${tones[i] ?? ""}`}>{t.cards[i]?.length ?? 0}</span>
+            </div>
+            {(t.cards[i] ?? []).map((card) => (
+              <div key={card} className="rounded-lg border border-border bg-card p-3 text-sm font-semibold shadow-panel">{card}</div>
+            ))}
+          </div>
+        ))}
       </div>
     </section>
   );

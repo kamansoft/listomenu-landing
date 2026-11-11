@@ -4,14 +4,14 @@ export const isLang = (v: string): v is Lang => (LANGS as readonly string[]).inc
 
 const es = {
   meta: {
-    title: "listo.menu — Pedidos, inventario y recetas para food trucks y kioscos",
-    description: "Toma pedidos rápido, descuenta inventario automáticamente por receta y planifica tus compras. Hecho para food trucks, arepas y kioscos.",
+    title: "listo.menu — Comandas, cocina, inventario y compras para negocios de comida",
+    description: "Lleva la comanda, organiza la cocina en un tablero, descuenta inventario por receta y sabe qué comprar para tus ventas y eventos. Para food trucks, empanaderías y kioscos.",
   },
   nav: { whatsapp: "Hablar por WhatsApp", lang: "English", langCode: "en" as Lang },
   hero: {
-    eyebrow: "Para food trucks, areperas y kioscos",
-    title: "Tus pedidos, tu inventario y tus recetas en un solo lugar",
-    body: "Vende, y listo.menu descuenta del inventario cada ingrediente que usaste. Sabe cuánto te queda, cuánto te cuesta cada plato y qué comprar mañana.",
+    eyebrow: "Para food trucks, empanaderías y kioscos",
+    title: "De la comanda a la cocina, y sabiendo qué comprar",
+    body: "Lleva tus órdenes de venta, mándalas a un tablero de cocina y deja que listo.menu descuente del inventario cada ingrediente usado. Y lo más importante: planifica tus ventas y eventos sabiendo exactamente qué y cuánto comprar.",
     cta: "Quiero una demo por WhatsApp",
     email: "¿Prefieres correo? Escríbenos",
     note: "Respuesta el mismo día · Sin compromiso",
@@ -19,43 +19,51 @@ const es = {
   pains: {
     title: "¿Te suena familiar?",
     items: [
-      { t: "Se acabó el queso en plena hora pico", d: "Nadie sabía cuánto quedaba hasta que fue tarde." },
-      { t: "Compras “a ojo”", d: "Unos días sobra y se pierde; otros días falta y dejas de vender." },
+      { t: "Se acabó el relleno en plena hora pico", d: "Nadie sabía cuánta carne mechada quedaba hasta que fue tarde." },
+      { t: "Compras “a ojo” para el evento", d: "Una feria el sábado y no sabes cuánta carne, harina o queso comprar. O sobra, o falta." },
       { t: "No sabes cuánto ganas por plato", d: "El precio sube, el costo cambia y la cuenta no cuadra." },
     ],
   },
   how: {
     title: "Cómo funciona",
     steps: [
-      { t: "Registra tus insumos", d: "Harina, queso, pollo, salsas, empaques: todo lo que usas es inventario." },
-      { t: "Une cada producto a su receta", d: "Una arepa reina pepiada usa 120 g de harina, 80 g de pollo, 50 g de aguacate." },
-      { t: "Vende y olvídate", d: "Cada pedido descuenta automáticamente lo consumido. Ves tu stock real en todo momento." },
+      { t: "Registra tus insumos", d: "Harina, carne, pollo, queso, ajo, empaques: todo lo que usas es inventario." },
+      { t: "Une cada producto a su receta", d: "Una empanada de carne mechada lleva 60 g de masa y 50 g de relleno. Y el relleno tiene su propia receta: carne, cebolla, pimentón y ajo." },
+      { t: "Toma la comanda y cocina", d: "Cada orden llega al tablero de cocina y descuenta automáticamente lo consumido. Ves tu stock real en todo momento." },
     ],
   },
   features: {
     title: "Todo lo que tu negocio necesita para servir sin parar",
     items: [
-      { t: "Pedidos en segundos", d: "Pantalla rápida de toma de pedidos con cambios por unidad: sin cebolla, extra queso." },
-      { t: "Pantalla de cocina", d: "La cocina ve cada plato a preparar, incluso los que vienen dentro de un combo." },
+      { t: "Comandas en segundos", d: "Lleva las órdenes de venta con cambios por unidad: sin cebolla, extra queso, para llevar." },
+      { t: "Cocina en tablero (kanban)", d: "Cada ítem de la orden es una tarjeta que avanza: pendiente, en preparación, listo." },
       { t: "Inventario automático", d: "El stock se descuenta por receta con cada venta o preparación, con lotes y fechas." },
       { t: "Costo y ganancia por plato", d: "La receta calcula el costo; tú ves precio, ganancia y margen." },
-      { t: "Combos sin enredos", d: "Un combo es un producto hecho de otros productos. Cambia lo que quieras dentro." },
+      { t: "Recetas dentro de recetas", d: "Rellenos, salsas y masas son preparaciones con su propia receta. Combos también." },
       { t: "Funciona sin internet", d: "Si se cae la conexión, los pedidos se guardan y se sincronizan al volver." },
     ],
   },
+  kitchen: {
+    eyebrow: "Cocina",
+    title: "Tu cocina en un tablero, ítem por ítem",
+    body: "Cada orden se divide en sus ítems y cada uno avanza por columnas. La cocina ve trabajo, no combos.",
+    cols: ["Pendiente", "En preparación", "Listo"],
+    cards: [["#14 · 2× Empanada de carne mechada", "#15 · 1× Empanada de queso"], ["#13 · 3× Empanada de pollo · sin cebolla"], ["#12 · 1× Empanada de carne mechada"]],
+  },
   plan: {
-    eyebrow: "Plan de producción",
-    title: "Dinos cuánto vas a vender y te decimos qué comprar",
-    body: "Ingresa cuántas unidades planeas preparar y listo.menu calcula, con tus recetas, la cantidad exacta de ingredientes que necesitas. Pruébalo:",
-    products: { reina: "Arepa reina pepiada", cheese: "Arepa de queso", empanada: "Empanada de carne" },
-    ingredients: { flour: "Harina de maíz", chicken: "Pollo", avocado: "Aguacate", cheese: "Queso", beef: "Carne molida", oil: "Aceite" },
+    eyebrow: "Plan de producción · Lo más importante",
+    title: "Planifica tus ventas y eventos: sabe qué comprar y cuánto",
+    body: "¿Feria el sábado o la semana de quincena? Ingresa cuántas empanadas planeas vender y listo.menu recorre tus recetas —incluido el relleno— y te da la lista exacta de compras. Pruébalo:",
+    products: { beef: "Empanada de carne mechada", chicken: "Empanada de pollo", cheese: "Empanada de queso" },
+    ingredients: { flour: "Harina", oil: "Aceite", beef: "Carne de res", onion: "Cebolla", pepper: "Pimentón", garlic: "Ajo", chicken: "Pollo", cheese: "Queso" },
+    note: "Incluye la masa y los rellenos: la carne mechada lleva carne, cebolla, pimentón y ajo.",
     units: "unidades",
     list: "Lista de compras",
     empty: "Agrega cantidades para ver tu lista.",
   },
   who: {
     title: "Hecho para negocios de comida pequeños y rápidos",
-    items: ["Food trucks", "Areperas y kioscos", "Comida callejera", "Restaurantes pequeños", "Cocinas ocultas", "Ferias y eventos"],
+    items: ["Food trucks", "Empanaderías y kioscos", "Comida callejera", "Restaurantes pequeños", "Cocinas ocultas", "Ferias y eventos"],
   },
   pricing: {
     title: "Planes simples, sin sorpresas",
@@ -75,6 +83,7 @@ const es = {
       { q: "¿Necesito comprar equipos especiales?", a: "No. Funciona en el celular, tablet o computador que ya tienes, desde el navegador." },
       { q: "¿Qué pasa si se va el internet?", a: "Sigues tomando pedidos. Se guardan en el dispositivo y se sincronizan cuando vuelve la conexión." },
       { q: "¿Puedo vender aunque el stock esté en cero?", a: "Sí. listo.menu te avisa, deja vender y luego ajustas el inventario." },
+      { q: "¿Sirve para planear un evento o feria?", a: "Sí. Ingresas cuánto esperas vender y obtienes la lista de ingredientes a comprar, según tus recetas." },
       { q: "¿Me ayudan a cargar mis recetas?", a: "Sí, te acompañamos en la configuración inicial por WhatsApp." },
     ],
   },
@@ -86,21 +95,21 @@ const es = {
     subject: "Quiero conocer listo.menu",
     body: "Hola, tengo un negocio de comida y quiero conocer listo.menu.\n\nNombre del negocio:\nCiudad:\nTipo de negocio:",
   },
-  alt: { orders: "Pantalla de toma de pedidos de listo.menu", inventory: "Inventario de ingredientes en listo.menu", truck: "Dueño de un food truck de arepas usando una tablet" },
+  alt: { orders: "Pantalla de toma de pedidos de listo.menu", inventory: "Inventario de ingredientes en listo.menu", truck: "Dueña de un puesto de empanadas usando una tablet en una feria" },
 };
 
 export type Dict = typeof es;
 
 const en: Dict = {
   meta: {
-    title: "listo.menu — Orders, inventory and recipes for food trucks and kiosks",
-    description: "Take orders fast, deduct inventory automatically by recipe and plan your purchases. Built for food trucks, arepa stands and kiosks.",
+    title: "listo.menu — Orders, kitchen board, inventory and purchasing for food businesses",
+    description: "Take orders, run the kitchen on a board, deduct inventory by recipe and know what to buy for your sales and events. For food trucks, empanada stands and kiosks.",
   },
   nav: { whatsapp: "Chat on WhatsApp", lang: "Español", langCode: "es" },
   hero: {
-    eyebrow: "For food trucks, arepa stands and kiosks",
-    title: "Your orders, stock and recipes in one place",
-    body: "Sell, and listo.menu deducts every ingredient you used from inventory. Know what's left, what each dish costs and what to buy tomorrow.",
+    eyebrow: "For food trucks, empanada stands and kiosks",
+    title: "From order ticket to kitchen, knowing what to buy",
+    body: "Take sales orders, send them to a kitchen board and let listo.menu deduct every ingredient used from inventory. Most importantly: plan your sales and events knowing exactly what and how much to buy.",
     cta: "Get a demo on WhatsApp",
     email: "Prefer email? Write to us",
     note: "Same-day reply · No commitment",
@@ -108,43 +117,51 @@ const en: Dict = {
   pains: {
     title: "Sound familiar?",
     items: [
-      { t: "Out of cheese at rush hour", d: "Nobody knew how much was left until it was too late." },
-      { t: "Buying by gut feeling", d: "Some days it goes to waste; other days you run out and lose sales." },
+      { t: "Out of filling at rush hour", d: "Nobody knew how much shredded beef was left until it was too late." },
+      { t: "Guessing purchases for an event", d: "A fair on Saturday and no idea how much beef, flour or cheese to buy." },
       { t: "No idea what each dish earns", d: "Prices rise, costs change and the numbers never add up." },
     ],
   },
   how: {
     title: "How it works",
     steps: [
-      { t: "Add your supplies", d: "Flour, cheese, chicken, sauces, packaging: everything you use is inventory." },
-      { t: "Link each product to a recipe", d: "A chicken-avocado arepa uses 120 g flour, 80 g chicken, 50 g avocado." },
-      { t: "Sell and relax", d: "Each order automatically deducts what was used. Your real stock, always." },
+      { t: "Add your supplies", d: "Flour, beef, chicken, cheese, garlic, packaging: everything you use is inventory." },
+      { t: "Link each product to a recipe", d: "A shredded-beef empanada uses 60 g dough and 50 g filling. The filling has its own recipe: beef, onion, pepper and garlic." },
+      { t: "Take the order and cook", d: "Each order lands on the kitchen board and deducts what was used. Your real stock, always." },
     ],
   },
   features: {
     title: "Everything your business needs to keep serving",
     items: [
-      { t: "Orders in seconds", d: "A fast order screen with per-unit changes: no onion, extra cheese." },
-      { t: "Kitchen screen", d: "The kitchen sees every dish to prepare, even those inside a combo." },
+      { t: "Orders in seconds", d: "Take sales orders with per-unit changes: no onion, extra cheese, to go." },
+      { t: "Kitchen kanban board", d: "Each order item is a card that moves: to do, cooking, ready." },
       { t: "Automatic inventory", d: "Stock is deducted by recipe on every sale or prep, with dated batches." },
       { t: "Cost and profit per dish", d: "Recipes compute cost; you see price, profit and margin." },
-      { t: "Combos made simple", d: "A combo is a product made of other products. Change anything inside." },
+      { t: "Recipes inside recipes", d: "Fillings, sauces and doughs are preparations with their own recipe. Combos too." },
       { t: "Works offline", d: "If the connection drops, orders are saved and synced when it's back." },
     ],
   },
+  kitchen: {
+    eyebrow: "Kitchen",
+    title: "Your kitchen on a board, item by item",
+    body: "Each order splits into its items and each one moves across columns. The kitchen sees work, not combos.",
+    cols: ["To do", "Cooking", "Ready"],
+    cards: [["#14 · 2× Shredded-beef empanada", "#15 · 1× Cheese empanada"], ["#13 · 3× Chicken empanada · no onion"], ["#12 · 1× Shredded-beef empanada"]],
+  },
   plan: {
-    eyebrow: "Production plan",
-    title: "Tell us what you'll sell, we'll tell you what to buy",
-    body: "Enter how many units you plan to make and listo.menu uses your recipes to calculate the exact ingredients you need. Try it:",
-    products: { reina: "Chicken-avocado arepa", cheese: "Cheese arepa", empanada: "Beef empanada" },
-    ingredients: { flour: "Corn flour", chicken: "Chicken", avocado: "Avocado", cheese: "Cheese", beef: "Ground beef", oil: "Oil" },
+    eyebrow: "Production plan · The most important part",
+    title: "Plan your sales and events: know what and how much to buy",
+    body: "A fair on Saturday or a busy payday week? Enter how many empanadas you expect to sell and listo.menu walks your recipes — fillings included — to give you the exact shopping list. Try it:",
+    products: { beef: "Shredded-beef empanada", chicken: "Chicken empanada", cheese: "Cheese empanada" },
+    ingredients: { flour: "Flour", oil: "Oil", beef: "Beef", onion: "Onion", pepper: "Bell pepper", garlic: "Garlic", chicken: "Chicken", cheese: "Cheese" },
+    note: "Includes dough and fillings: shredded beef needs beef, onion, pepper and garlic.",
     units: "units",
     list: "Shopping list",
     empty: "Add quantities to see your list.",
   },
   who: {
     title: "Built for small, fast food businesses",
-    items: ["Food trucks", "Arepa stands & kiosks", "Street food", "Small restaurants", "Ghost kitchens", "Fairs & events"],
+    items: ["Food trucks", "Empanada stands & kiosks", "Street food", "Small restaurants", "Ghost kitchens", "Fairs & events"],
   },
   pricing: {
     title: "Simple plans, no surprises",
@@ -164,6 +181,7 @@ const en: Dict = {
       { q: "Do I need special hardware?", a: "No. It runs in the browser on the phone, tablet or computer you already have." },
       { q: "What if the internet goes down?", a: "Keep taking orders. They're stored on the device and synced when you're back online." },
       { q: "Can I sell when stock is at zero?", a: "Yes. listo.menu warns you, lets the sale through, and you reconcile later." },
+      { q: "Can I use it to plan an event or fair?", a: "Yes. Enter how much you expect to sell and get the ingredient shopping list from your recipes." },
       { q: "Will you help me load my recipes?", a: "Yes, we guide your initial setup over WhatsApp." },
     ],
   },
@@ -175,7 +193,7 @@ const en: Dict = {
     subject: "I'd like to learn about listo.menu",
     body: "Hi, I run a food business and I'd like to learn about listo.menu.\n\nBusiness name:\nCity:\nType of business:",
   },
-  alt: { orders: "listo.menu order-taking screen", inventory: "Ingredient inventory in listo.menu", truck: "Arepa food truck owner using a tablet" },
+  alt: { orders: "listo.menu order-taking screen", inventory: "Ingredient inventory in listo.menu", truck: "Empanada stand owner using a tablet at a street fair" },
 };
 
 export const dict: Record<Lang, Dict> = { es, en };
