@@ -1,7 +1,8 @@
-export const WHATSAPP_NUMBER = "573138089642";
-export const WHATSAPP_DISPLAY = "+57 313 808 9642";
-// Placeholder until the real contact email is provided.
-export const CONTACT_EMAIL = "hola@listo.menu";
+import { SITE_CONFIG } from "./site-config";
+
+export const WHATSAPP_DISPLAY = SITE_CONFIG.contact.whatsapp;
+export const WHATSAPP_NUMBER = WHATSAPP_DISPLAY.replace(/\D/g, "");
+export const CONTACT_EMAIL = SITE_CONFIG.contact.email;
 
 export function isMobileUserAgent(ua: string): boolean {
   return /Android|iPhone|iPad|iPod|Mobile|Opera Mini|IEMobile/i.test(ua);

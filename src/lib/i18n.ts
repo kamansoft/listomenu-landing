@@ -73,12 +73,12 @@ const es = {
     choose: "Elegir por WhatsApp",
     loading: "Consultando precio…",
     unavailable: "Consultar precio",
-    conversion: "Precios en USD convertidos desde COP. Tasa del",
+    conversion: "Precios en COP convertidos desde USD. Tasa del",
     rateSource: "Tipo de cambio: ExchangeRate-API",
     plans: [
-      { id: "Emprendedor", price: "$49.000 COP", d: "Para arrancar con un punto de venta.", f: ["3 dispositivos y 3 usuarios", "3 roles: mesero (crea órdenes), cocinero y administrador", "Comandas e inventario por receta", "Pantalla de cocina"] },
-      { id: "Negocio", price: "$89.000 COP", d: "Para el negocio que ya no para.", f: ["Todo lo de Emprendedor", "10 dispositivos y 10 usuarios", "Plan de producción y lista de compras"] },
-      { id: "Pro", price: "$149.000 COP", d: "Para equipos con más movimiento.", f: ["Todo lo de Negocio", "Dispositivos y usuarios ilimitados", "Roles y permisos de equipo a medida", "Auditoría", "Instalación de un pequeño servidor en tu local: funciona 100% sin internet", "Configuración de impresora tickera para órdenes y cocina (impresoras se cobran aparte)"] },
+      { id: "Emprendedor", key: "entrepreneur", d: "Para arrancar con un punto de venta.", f: ["3 dispositivos y 3 usuarios", "3 roles: mesero (crea órdenes), cocinero y administrador", "Comandas e inventario por receta", "Pantalla de cocina"] },
+      { id: "Negocio", key: "business", d: "Para el negocio que ya no para.", f: ["Todo lo de Emprendedor", "10 dispositivos y 10 usuarios", "Plan de producción y lista de compras"] },
+      { id: "Pro", key: "pro", d: "Para equipos con más movimiento.", f: ["Todo lo de Negocio", "Dispositivos y usuarios ilimitados", "Roles y permisos de equipo a medida", "Auditoría", "Instalación de un pequeño servidor en tu local: funciona 100% sin internet", "Configuración de impresora tickera para órdenes y cocina (impresoras se cobran aparte)"] },
     ],
   },
   faq: {
@@ -92,7 +92,7 @@ const es = {
     ],
   },
   final: { title: "¿Listo para dejar de adivinar?", body: "Cuéntanos de tu negocio y te mostramos listo.menu en 15 minutos.", cta: "Escríbenos por WhatsApp", email: "Enviar un correo" },
-  footer: { rights: "Todos los derechos reservados." },
+  footer: { rights: "Todos los derechos reservados.", productBy: "Otro producto de" },
   msg: {
     default: "Hola, quiero conocer listo.menu para mi negocio de comida.",
     plan: (p: string) => `Hola, me interesa el plan ${p} de listo.menu.`,
@@ -175,12 +175,12 @@ const en: Dict = {
     choose: "Choose on WhatsApp",
     loading: "Checking price…",
     unavailable: "Request price",
-    conversion: "USD prices converted from COP. Exchange rate dated",
+    conversion: "COP prices converted from USD. Exchange rate dated",
     rateSource: "Exchange rate: ExchangeRate-API",
     plans: [
-      { id: "Starter", price: "$49,000 COP", d: "To get going with one point of sale.", f: ["3 devices and 3 users", "3 roles: waiter (creates orders), cook and restaurant admin", "Orders and recipe-based inventory", "Kitchen screen"] },
-      { id: "Business", price: "$89,000 COP", d: "For the business that never stops.", f: ["Everything in Starter", "10 devices and 10 users", "Production plan and shopping list"] },
-      { id: "Pro", price: "$149,000 COP", d: "For busier teams.", f: ["Everything in Business", "Unlimited devices and users", "Custom team roles & permissions", "Audit log", "Small on-site server installed at your business: works 100% without internet", "Ticket printer setup for orders and kitchen (printers sold separately)"] },
+      { id: "Starter", key: "entrepreneur", d: "To get going with one point of sale.", f: ["3 devices and 3 users", "3 roles: waiter (creates orders), cook and restaurant admin", "Orders and recipe-based inventory", "Kitchen screen"] },
+      { id: "Business", key: "business", d: "For the business that never stops.", f: ["Everything in Starter", "10 devices and 10 users", "Production plan and shopping list"] },
+      { id: "Pro", key: "pro", d: "For busier teams.", f: ["Everything in Business", "Unlimited devices and users", "Custom team roles & permissions", "Audit log", "Small on-site server installed at your business: works 100% without internet", "Ticket printer setup for orders and kitchen (printers sold separately)"] },
     ],
   },
   faq: {
@@ -194,7 +194,7 @@ const en: Dict = {
     ],
   },
   final: { title: "Ready to stop guessing?", body: "Tell us about your business and we'll show you listo.menu in 15 minutes.", cta: "Message us on WhatsApp", email: "Send an email" },
-  footer: { rights: "All rights reserved." },
+  footer: { rights: "All rights reserved.", productBy: "Another product by" },
   msg: {
     default: "Hi, I'd like to learn about listo.menu for my food business.",
     plan: (p: string) => `Hi, I'm interested in the listo.menu ${p} plan.`,

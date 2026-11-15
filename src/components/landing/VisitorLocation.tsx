@@ -6,7 +6,7 @@ type VisitorLocation = {
   country: string | null;
   ready: boolean;
   rateReady: boolean;
-  usdPerCop?: number;
+  copPerUsd?: number;
   rateDate?: string;
   languageOverride: Lang | null;
   chooseLanguage: (lang: Lang) => void;
@@ -36,22 +36,22 @@ export function VisitorLocationProvider({ children }: { children: ReactNode }) {
         // Unknown country must not be assumed to be Colombia or priced in COP.
       }
       if (controller.signal.aborted) return;
-      setLocation({ country, ready: true, rateReady: country === "CO" || !country });
-      if (!country || country === "CO") return;
+      setLocation({ country, ready: true, rateReady: country !== "CO" });
+      if (country !== "CO") return;
       try {
-        const response = await fetch("https://open.er-api.com/v6/latest/COP", {
+        const response = await fetch("https://open.er-api.com/v6/latest/USD", {
           credentials: "omit", signal: AbortSignal.any([controller.signal, AbortSignal.timeout(6000)]),
         });
         if (!response.ok) throw new Error("Exchange rate unavailable");
         const data = await response.json();
-        const rate = data.rates?.USD;
+        const rate = data.rates?.COP;
         const updated = data.time_last_update_unix;
         if (data.result !== "success" || typeof rate !== "number" || !Number.isFinite(rate) || rate <= 0 ||
           typeof updated !== "number" || Math.abs(Date.now() / 1000 - updated) > 3 * 86400) {
           throw new Error("Invalid or stale exchange rate");
         }
         if (!controller.signal.aborted) setLocation({
-          country, ready: true, rateReady: true, usdPerCop: rate,
+          country, ready: true, rateReady: true, copPerUsd: rate,
           rateDate: new Date(updated * 1000).toISOString().slice(0, 10),
         });
       } catch {

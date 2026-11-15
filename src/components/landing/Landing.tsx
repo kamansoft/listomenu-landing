@@ -11,6 +11,7 @@ import { CONTACT_EMAIL, WHATSAPP_DISPLAY } from "@/lib/contact";
 import { EmailLink, WhatsAppIcon, WhatsAppLink } from "./ContactLinks";
 import { useVisitorLocation } from "./VisitorLocation";
 import { countryCurrency, formatPlanPrice } from "@/lib/localization";
+import { SITE_CONFIG } from "@/lib/site-config";
 import ordersImg from "@/assets/mockup-orders.jpg";
 import inventoryImg from "@/assets/mockup-inventory.jpg";
 import truckImg from "@/assets/foodtruck.jpg";
@@ -44,7 +45,10 @@ export function Landing({ lang }: { lang: Lang }) {
       </main>
       <footer className="border-t border-border bg-card">
         <div className={`${wrap} flex flex-col items-start justify-between gap-4 py-8 sm:flex-row sm:items-center`}>
-          <BrandLockup />
+          <div className="flex flex-col gap-2">
+            <BrandLockup />
+            <p className="text-sm text-muted-foreground">{t.footer.productBy} <a href={SITE_CONFIG.company.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-4">{SITE_CONFIG.company.name}</a></p>
+          </div>
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
             <WhatsAppLink message={t.msg.default} className="inline-flex min-h-11 items-center gap-2 hover:text-primary">
               <WhatsAppIcon className="size-4" /> {WHATSAPP_DISPLAY}
@@ -278,7 +282,7 @@ function Who({ lang }: { lang: Lang }) {
 function Pricing({ lang }: { lang: Lang }) {
   const t = dict[lang].pricing;
   const m = dict[lang].msg;
-  const { country, ready, rateReady, usdPerCop, rateDate } = useVisitorLocation();
+  const { country, ready, rateReady, copPerUsd, rateDate } = useVisitorLocation();
   const currency = countryCurrency(country);
   return (
     <section className="border-y border-border bg-card">
@@ -287,8 +291,8 @@ function Pricing({ lang }: { lang: Lang }) {
         <div className="grid gap-4 md:grid-cols-3">
           {t.plans.map((p, i) => {
             const featured = i === 1;
-            const cop = Number(p.price.replace(/[^0-9]/g, ""));
-            const price = currency ? formatPlanPrice(cop, currency, lang, usdPerCop) : null;
+            const usd = SITE_CONFIG.plans[p.key as keyof typeof SITE_CONFIG.plans].monthlyUsd;
+            const price = currency ? formatPlanPrice(usd, currency, lang, copPerUsd) : null;
             return (
               <div key={p.id} className={`relative flex flex-col gap-4 rounded-2xl border p-6 ${featured ? "border-primary bg-primary-surface shadow-lift" : "border-border bg-background"}`}>
                 {featured && <span className="absolute -top-3 left-6 rounded-full bg-primary px-3 py-1 text-xs font-bold text-primary-foreground">{t.popular}</span>}
@@ -307,7 +311,7 @@ function Pricing({ lang }: { lang: Lang }) {
             );
           })}
         </div>
-        {currency === "USD" && rateDate && <p className="mt-6 text-sm text-muted-foreground">{t.conversion} {rateDate}. <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">{t.rateSource}</a></p>}
+        {currency === "COP" && rateDate && <p className="mt-6 text-sm text-muted-foreground">{t.conversion} {rateDate}. <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">{t.rateSource}</a></p>}
       </div>
     </section>
   );

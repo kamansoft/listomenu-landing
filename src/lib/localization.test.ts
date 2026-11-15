@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { countryCurrency, countryLanguage, convertCopToUsd, formatPlanPrice, parseCountryTrace } from "./localization";
+import { countryCurrency, countryLanguage, convertUsdToCop, formatPlanPrice, parseCountryTrace } from "./localization";
 
 describe("visitor country rules", () => {
   it("always selects Spanish for Colombia", () => expect(countryLanguage("CO")).toBe("es"));
@@ -20,17 +20,17 @@ describe("visitor country rules", () => {
   });
 });
 
-describe("COP to USD conversion", () => {
-  it("converts COP to USD rather than relabeling COP amounts", () => {
-    expect(convertCopToUsd(49000, 0.00025)).toBe(12.25);
-    expect(convertCopToUsd(89000, 0.00025)).toBe(22.25);
-    expect(convertCopToUsd(149000, 0.00025)).toBe(37.25);
+describe("USD to COP conversion", () => {
+  it("converts USD base prices to Colombian pesos", () => {
+    expect(convertUsdToCop(14.90, 4000)).toBe(59600);
+    expect(convertUsdToCop(27.04, 4000)).toBe(108160);
+    expect(convertUsdToCop(45.30, 4000)).toBe(181200);
   });
-  it("rounds USD to cents", () => expect(convertCopToUsd(49000, 0.000304)).toBe(14.9));
-  it("keeps the Colombian base amount unchanged", () => {
-    const displayed = formatPlanPrice(49000, "COP", "es");
-    expect(Number(displayed?.replace(/[^0-9]/g, ""))).toBe(49000);
+  it("rounds COP to whole pesos", () => expect(convertUsdToCop(14.90, 3285.261046)).toBe(48950));
+  it("keeps USD available unchanged without an exchange rate", () => {
+    const displayed = formatPlanPrice(14.90, "USD", "en");
+    expect(Number(displayed?.replace(/[^0-9.]/g, ""))).toBe(14.90);
   });
-  it("never shows COP in place of an unavailable USD conversion", () => expect(formatPlanPrice(49000, "USD", "en")).toBeNull());
-  it("rejects invalid rates", () => expect(() => convertCopToUsd(49000, 0)).toThrow());
+  it("never relabels USD when the COP rate is unavailable", () => expect(formatPlanPrice(14.90, "COP", "es")).toBeNull());
+  it("rejects invalid rates", () => expect(() => convertUsdToCop(14.90, 0)).toThrow());
 });

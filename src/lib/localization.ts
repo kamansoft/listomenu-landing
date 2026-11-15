@@ -20,14 +20,14 @@ export function parseCountryTrace(trace: string): string | null {
   return country && country !== "XX" ? country : null;
 }
 
-export function convertCopToUsd(cop: number, usdPerCop: number): number {
-  if (!Number.isFinite(usdPerCop) || usdPerCop <= 0) throw new Error("Invalid exchange rate");
-  return Math.round(cop * usdPerCop * 100) / 100;
+export function convertUsdToCop(usd: number, copPerUsd: number): number {
+  if (!Number.isFinite(copPerUsd) || copPerUsd <= 0) throw new Error("Invalid exchange rate");
+  return Math.round(usd * copPerUsd);
 }
 
-export function formatPlanPrice(cop: number, currency: "COP" | "USD", lang: Lang, usdPerCop?: number): string | null {
-  if (currency === "USD" && (!usdPerCop || !Number.isFinite(usdPerCop) || usdPerCop <= 0)) return null;
-  const amount = currency === "COP" ? cop : convertCopToUsd(cop, usdPerCop ?? 0);
+export function formatPlanPrice(usd: number, currency: "COP" | "USD", lang: Lang, copPerUsd?: number): string | null {
+  if (currency === "COP" && (!copPerUsd || !Number.isFinite(copPerUsd) || copPerUsd <= 0)) return null;
+  const amount = currency === "USD" ? usd : convertUsdToCop(usd, copPerUsd ?? 0);
   return `${new Intl.NumberFormat(lang === "es" ? "es-CO" : "en-US", {
     style: "currency", currency, currencyDisplay: "narrowSymbol",
     minimumFractionDigits: currency === "COP" ? 0 : 2,
