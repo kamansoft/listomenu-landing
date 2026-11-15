@@ -7,7 +7,18 @@ const es = {
     title: "listo.menu — Comandas, cocina, inventario y compras para negocios de comida",
     description: "Lleva la comanda, organiza la cocina en un tablero, descuenta inventario por receta y sabe qué comprar para tus ventas y eventos. Para food trucks, empanaderías y kioscos.",
   },
-  nav: { whatsapp: "Hablar por WhatsApp", lang: "English", langCode: "en" as Lang },
+  nav: {
+    lang: "English", langCode: "en" as Lang, label: "Navegación del sitio", sections: "Todas las secciones",
+    items: [
+      { id: "inicio", label: "Inicio" }, { id: "retos", label: "Tu día a día" },
+      { id: "como-funciona", label: "Cómo funciona" }, { id: "recetas", label: "Recetas y productos" },
+      { id: "funciones", label: "Funciones" }, { id: "cocina", label: "Cocina" },
+      { id: "planificacion", label: "Planifica tus ventas" }, { id: "negocios", label: "Tipos de negocio" },
+      { id: "por-que", label: "Por qué listo.menu" }, { id: "planes", label: "Planes" },
+      { id: "kamansoft", label: "Detrás de listo.menu" }, { id: "preguntas", label: "Preguntas frecuentes" },
+      { id: "contacto", label: "Contacto" },
+    ],
+  },
   hero: {
     eyebrow: "Para food trucks, empanaderías y kioscos",
     title: "Sabe qué comprar para tu feria y vende aunque se caiga el internet",
@@ -152,7 +163,18 @@ const en: Dict = {
     title: "listo.menu — Orders, kitchen board, inventory and purchasing for food businesses",
     description: "Take orders, run the kitchen on a board, deduct inventory by recipe and know what to buy for your sales and events. For food trucks, empanada stands and kiosks.",
   },
-  nav: { whatsapp: "Chat on WhatsApp", lang: "Español", langCode: "es" },
+  nav: {
+    lang: "Español", langCode: "es", label: "Site navigation", sections: "All sections",
+    items: [
+      { id: "inicio", label: "Home" }, { id: "retos", label: "Daily challenges" },
+      { id: "como-funciona", label: "How it works" }, { id: "recetas", label: "Recipes & products" },
+      { id: "funciones", label: "Features" }, { id: "cocina", label: "Kitchen" },
+      { id: "planificacion", label: "Plan your sales" }, { id: "negocios", label: "Business types" },
+      { id: "por-que", label: "Why listo.menu" }, { id: "planes", label: "Plans" },
+      { id: "kamansoft", label: "Behind listo.menu" }, { id: "preguntas", label: "FAQ" },
+      { id: "contacto", label: "Contact" },
+    ],
+  },
   hero: {
     eyebrow: "For food trucks, empanada stands and kiosks",
     title: "Know what to buy for your event and keep selling when the internet drops",

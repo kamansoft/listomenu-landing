@@ -1,7 +1,9 @@
 import { Link } from "@tanstack/react-router";
+import { Button } from "@/components/ui/button";
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import {
   Boxes, ChefHat, ClipboardList, Layers, PackageCheck, Receipt, ShoppingBasket,
-  Timer, TrendingUp, WifiOff, AlertTriangle, HelpCircle, Check, Mail, Phone, Truck, Store, UtensilsCrossed, Soup, Building2, PartyPopper,
+  Timer, TrendingUp, WifiOff, AlertTriangle, HelpCircle, Check, Mail, Phone, Truck, Store, UtensilsCrossed, Soup, Building2, PartyPopper, Menu, ChevronDown,
 } from "lucide-react";
 import { BrandLockup, CheckO } from "@/components/brand/logo";
 import { dict, type Lang } from "@/lib/i18n";
@@ -38,7 +40,7 @@ export function Landing({ lang }: { lang: Lang }) {
         <Hero lang={lang} />
         <Pains lang={lang} />
         <How lang={lang} />
-        <RecipeBuilder lang={lang} />
+        <div id="recetas" className="landing-anchor"><RecipeBuilder lang={lang} /></div>
         <TryCta lang={lang} source="recetas" />
         <Features lang={lang} />
         <Kitchen lang={lang} />
@@ -82,15 +84,33 @@ function Header({ lang }: { lang: Lang }) {
         <Link to="/$lang" params={{ lang }} aria-label="listo.menu">
           <BrandLockup />
         </Link>
-        <nav className="flex items-center gap-2">
+        <nav aria-label={t.nav.label} className="flex min-w-0 items-center gap-1 sm:gap-2">
+          <div className="hidden items-center gap-1 xl:flex">
+            {t.nav.items.filter((item) => ["como-funciona", "recetas", "cocina", "planificacion", "planes"].includes(item.id)).map((item) => (
+              <Button key={item.id} variant="ghost" asChild className="min-h-11 px-3 text-muted-foreground hover:text-primary">
+                <a href={`#${item.id}`}>{item.label}</a>
+              </Button>
+            ))}
+          </div>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="min-h-11 min-w-11 gap-2" aria-label={t.nav.sections} title={t.nav.sections}>
+                <Menu className="size-5 xl:hidden" />
+                <span className="hidden sm:inline">{t.nav.sections}</span>
+                <ChevronDown className="hidden sm:block" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" sideOffset={12} className="w-64 max-w-[calc(100vw-2rem)]">
+              {t.nav.items.map((item) => (
+                <DropdownMenuItem key={item.id} asChild className="min-h-11 cursor-pointer px-3">
+                  <a href={`#${item.id}`}>{item.label}</a>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
           {country !== "CO" && <Link to="/$lang" params={{ lang: t.nav.langCode }} onClick={() => chooseLanguage(t.nav.langCode)} hrefLang={t.nav.langCode} className="inline-flex min-h-11 items-center rounded-md px-3 text-sm font-semibold text-muted-foreground hover:text-primary">
             {t.nav.lang}
           </Link>}
-          <WhatsAppLink message={t.msg.default} className={`${btnPrimary} px-3 sm:px-5`}>
-            <WhatsAppIcon className="size-5" />
-            <span className="hidden sm:inline">{t.nav.whatsapp}</span>
-            <span className="sr-only sm:hidden">{t.nav.whatsapp}</span>
-          </WhatsAppLink>
         </nav>
       </div>
     </header>
@@ -101,7 +121,7 @@ function Hero({ lang }: { lang: Lang }) {
   const t = dict[lang].hero;
   const m = dict[lang].msg;
   return (
-    <section className="relative overflow-hidden">
+    <section id="inicio" className="landing-anchor relative overflow-hidden">
       <div aria-hidden className="pointer-events-none absolute -right-40 -top-40 size-[640px] rounded-full bg-primary-surface blur-3xl" />
       <div className={`${wrap} relative grid items-center gap-8 py-12 lg:grid-cols-[1fr_1.1fr] lg:gap-8 lg:py-20`}>
         <div className="flex flex-col gap-6">
@@ -151,7 +171,7 @@ function SectionTitle({ eyebrow, title, sub }: { eyebrow?: string; title: string
 function Pains({ lang }: { lang: Lang }) {
   const t = dict[lang].pains;
   return (
-    <section className={`${wrap} py-12 lg:py-16`}>
+    <section id="retos" className={`${wrap} landing-anchor py-12 lg:py-16`}>
       <SectionTitle title={t.title} />
       <div className="grid gap-4 md:grid-cols-3">
         {t.items.map((p) => (
@@ -171,7 +191,7 @@ function Pains({ lang }: { lang: Lang }) {
 function How({ lang }: { lang: Lang }) {
   const t = dict[lang].how;
   return (
-    <section className="bg-primary-deep text-primary-foreground">
+    <section id="como-funciona" className="landing-anchor bg-primary-deep text-primary-foreground">
       <div className={`${wrap} grid gap-8 py-12 lg:grid-cols-[1fr_1fr] lg:items-center lg:py-20`}>
         <div>
           <h2 className="mb-8 text-3xl font-extrabold sm:text-4xl">{t.title}</h2>
@@ -199,7 +219,7 @@ function How({ lang }: { lang: Lang }) {
 function Features({ lang }: { lang: Lang }) {
   const t = dict[lang].features;
   return (
-    <section className={`${wrap} py-12 lg:py-20`}>
+    <section id="funciones" className={`${wrap} landing-anchor py-12 lg:py-20`}>
       <SectionTitle title={t.title} />
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {t.items.map((f, i) => {
@@ -220,7 +240,7 @@ function Features({ lang }: { lang: Lang }) {
 function ProductionPlan({ lang }: { lang: Lang }) {
   const t = dict[lang].plan;
   return (
-    <section className="bg-primary-surface">
+    <section id="planificacion" className="landing-anchor bg-primary-surface">
       <div className={`${wrap} py-12 lg:py-20`}>
         <SectionTitle eyebrow={t.eyebrow} title={t.title} sub={t.body} />
         <ProductionPlanner lang={lang} />
@@ -233,7 +253,7 @@ function Who({ lang }: { lang: Lang }) {
   const t = dict[lang].who;
   const demo = useViewportDemo(t.items.length, () => {});
   return (
-    <section className={`${wrap} grid gap-8 py-12 lg:grid-cols-2 lg:items-center lg:py-20`}>
+    <section id="negocios" className={`${wrap} landing-anchor grid gap-8 py-12 lg:grid-cols-2 lg:items-center lg:py-20`}>
       <img src={truckImg} alt={dict[lang].alt.truck} loading="lazy" width={1280} height={896} className="w-full rounded-2xl object-cover shadow-panel" />
       <div ref={demo.ref} data-testid="business-types">
         <SectionTitle title={t.title} />
@@ -260,7 +280,7 @@ function Pricing({ lang }: { lang: Lang }) {
   const currency = ready ? countryCurrency(country) ?? "USD" : null;
   const demo = SITE_CONFIG.demo;
   return (
-    <section className="border-y border-border bg-card">
+    <section id="planes" className="landing-anchor border-y border-border bg-card">
       <div className={`${wrap} py-12 lg:py-20`}>
         <SectionTitle title={t.title} sub={t.sub} />
         <div className="grid gap-4 md:grid-cols-3">
@@ -307,7 +327,7 @@ function Pricing({ lang }: { lang: Lang }) {
 function Faq({ lang }: { lang: Lang }) {
   const t = dict[lang].faq;
   return (
-    <section className={`${wrap} py-12 lg:py-20`}>
+    <section id="preguntas" className={`${wrap} landing-anchor py-12 lg:py-20`}>
       <SectionTitle title={t.title} />
       <div className="grid gap-2 lg:grid-cols-2 lg:gap-4">
         {t.items.map((f) => (
@@ -327,7 +347,7 @@ function Final({ lang }: { lang: Lang }) {
   const t = dict[lang].final;
   const m = dict[lang].msg;
   return (
-    <section className={`${wrap} pb-12 lg:pb-20`}>
+    <section id="contacto" className={`${wrap} landing-anchor pb-12 lg:pb-20`}>
       <div className="flex flex-col items-start gap-6 rounded-3xl bg-primary p-8 text-primary-foreground shadow-lift lg:flex-row lg:items-center lg:justify-between lg:p-12">
         <div className="max-w-2xl">
           <h2 className="text-3xl font-extrabold sm:text-4xl">{t.title}</h2>
@@ -349,7 +369,7 @@ function Final({ lang }: { lang: Lang }) {
 function Kitchen({ lang }: { lang: Lang }) {
   const t = dict[lang].kitchen;
   return (
-    <section className={`${wrap} pb-12 lg:pb-20`}>
+    <section id="cocina" className={`${wrap} landing-anchor pb-12 lg:pb-20`}>
       <SectionTitle eyebrow={t.eyebrow} title={t.title} sub={t.body} />
       <KitchenBoard lang={lang} />
     </section>
@@ -374,7 +394,7 @@ function TryCta({ lang, source }: { lang: Lang; source: string }) {
 function Simple({ lang }: { lang: Lang }) {
   const t = dict[lang].simple;
   return (
-    <section className={`${wrap} pb-12 lg:pb-20`}>
+    <section id="por-que" className={`${wrap} landing-anchor pb-12 lg:pb-20`}>
       <SectionTitle eyebrow={t.eyebrow} title={t.title} sub={t.sub} />
       <div className="overflow-x-auto rounded-2xl border border-border bg-card">
         <table className="w-full min-w-[520px] text-left">
@@ -401,7 +421,7 @@ function Simple({ lang }: { lang: Lang }) {
 function Trust({ lang }: { lang: Lang }) {
   const t = dict[lang].trust;
   return (
-    <section className={`${wrap} py-12 lg:py-16`}>
+    <section id="kamansoft" className={`${wrap} landing-anchor py-12 lg:py-16`}>
       <div className="grid gap-6 rounded-2xl border border-border bg-card p-6 lg:grid-cols-[auto_1fr_auto] lg:items-center lg:p-8">
         <span className="flex size-12 items-center justify-center rounded-lg bg-primary-surface text-primary"><ShieldCheck className="size-6" /></span>
         <div>

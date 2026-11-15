@@ -39,3 +39,4 @@ use the editor.
 - Keep recipe-builder recipes and linked products in component memory, validate positive ingredient quantities and snapshot recipes when saving. Why: the temporary demonstration resets on reload and never writes real business data.
 - Present recipe creation as a three-stage wizard (ingredients, quantities, product review) with an automatically linked recipe, editable summary, persistent preview, and one-shot walkthrough. Why: visitors avoid redundant recipe selection and can verify the result before creating it.
 - Tag every prefilled WhatsApp message with its page section via withSource. Why: know which section produces conversations.
+- Use shared localized section IDs for header anchors, with key desktop shortcuts and an accessible all-sections dropdown; offset anchor scrolling below the sticky header. Why: every landing section stays reachable on desktop and mobile without altering demos.
