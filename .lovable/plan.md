@@ -11,10 +11,12 @@
 Segmentos: 1) food trucks y puestos de feria (duda: internet); 2) empanaderias/kioscos (duda: cuanto gano por plato y que comprar); 3) pequenos restaurantes (duda: DIAN y costos ocultos).
 
 ## Cambios en el sitio (en orden de impacto)
+Las demos interactivas (recetas, cocina, plan de produccion, tipos de negocio) no se modifican: son la pre-demo y prueban el diferenciador "simple, sin pantallas llenas de controles". Solo se agrega texto y un boton junto a ellas.
+
 1. **Oferta "Prueba gratis 14 dias, sin tarjeta, te lo configuramos por WhatsApp"** como boton principal en hero, precios y cierre. Mensaje de WhatsApp prellenado con negocio, ciudad y tipo, para calificar al lead.
 2. **Hero reescrito** con los diferenciadores: "Sabe que comprar para tu feria y vende aunque se caiga el internet". Franja de confianza debajo: "Sin tarjeta · Cancela cuando quieras · Hecho en Colombia por kamansoft".
-3. **Precios fijos y redondos en pesos para Colombia** (ej. 59.900 / 109.900 / 179.900, a confirmar) guardados en la configuracion central; USD para el resto. Quitar "de referencia" y el estado de carga. Linea "Todo incluido: pantalla de cocina y recetas sin costo extra". Opcion de descuento anual (a confirmar).
-4. **Tabla comparativa breve** "listo.menu vs. lo tipico" (cocina incluida, sin internet, lista de compras para eventos) sin nombrar marcas.
+3. **Precios fijos y redondos en pesos para Colombia** (ej. 59.900 / 109.900 / 179.900, a confirmar) guardados en la configuracion central; USD para el resto. Quitar "de referencia" y el estado de carga. Mensaje de simplicidad en hero y comparativa: "Lo que ves arriba es la app real: pocas pantallas, sin capacitaciones". Linea "Todo incluido: pantalla de cocina y recetas sin costo extra". Opcion de descuento anual (a confirmar).
+4. **Tabla comparativa breve** "listo.menu vs. lo tipico" (interfaz simple para locales pequenos y medianos, cocina incluida, sin internet, lista de compras para eventos) sin nombrar marcas.
 5. **Nuevas preguntas frecuentes**: factura electronica DIAN (respuesta honesta segun lo que hace la app), cierre de caja, pagos Nequi/tarjeta, que pasa al terminar la prueba, cuanto tarda empezar.
 6. **Seccion de confianza**: quien esta detras (kamansoft), garantia de acompanamiento y espacio para testimonios cuando existan (no inventaremos testimonios).
 7. **Boton flotante de WhatsApp** siempre visible en movil y escritorio, y CTA tras cada demo interactiva ("¿Quieres esto con tus recetas? Pruebalo gratis").
