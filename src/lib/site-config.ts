@@ -11,11 +11,10 @@ export const SITE_CONFIG = {
   // Demo account (not a plan): no time limit, limited capacity.
   demo: { users: 1, inventoryItems: 10, products: 2, recipes: 2 },
   // Fixed preloaded prices per currency: Colombia sees COP, everyone else USD.
-  // Proposed values pending owner confirmation.
   plans: {
-    entrepreneur: { monthlyUsd: 14.90, monthlyCop: 59900 },
-    business: { monthlyUsd: 27.04, monthlyCop: 109900 },
-    pro: { monthlyUsd: 45.30, monthlyCop: 179900 },
+    entrepreneur: { monthlyUsd: 10, monthlyCop: 30000, startingPrice: false, requiresCall: false },
+    business: { monthlyUsd: 50, monthlyCop: 150000, startingPrice: false, requiresCall: false },
+    enterprise: { monthlyUsd: 200, monthlyCop: 500000, startingPrice: true, requiresCall: true },
   },
 } as const;
 

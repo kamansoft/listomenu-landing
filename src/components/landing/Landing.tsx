@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import {
   Boxes, ChefHat, ClipboardList, Layers, PackageCheck, Receipt, ShoppingBasket,
-  Timer, TrendingUp, WifiOff, AlertTriangle, HelpCircle, Check, Mail, Truck, Store, UtensilsCrossed, Soup, Building2, PartyPopper,
+  Timer, TrendingUp, WifiOff, AlertTriangle, HelpCircle, Check, Mail, Phone, Truck, Store, UtensilsCrossed, Soup, Building2, PartyPopper,
 } from "lucide-react";
 import { BrandLockup, CheckO } from "@/components/brand/logo";
 import { dict, type Lang } from "@/lib/i18n";
@@ -273,14 +273,18 @@ function Pricing({ lang }: { lang: Lang }) {
                 {featured && <span className="absolute -top-3 left-6 rounded-full bg-primary px-3 py-1 text-xs font-bold text-primary-foreground">{t.popular}</span>}
                 <h3 className="text-2xl font-extrabold">{p.id}</h3>
                 <p className="text-muted-foreground">{p.d}</p>
-                <p className="min-h-10" aria-live="polite"><span className="font-display text-3xl font-extrabold">{price ?? t.loading}</span>{price && <span className="text-muted-foreground">{t.perMonth}</span>}</p>
+                <div className="min-h-20" aria-live="polite">
+                  <p className="min-h-6 text-sm font-semibold text-muted-foreground">{plan.startingPrice ? t.from : "\u00a0"}</p>
+                  <p className="flex flex-wrap items-baseline gap-x-1"><span className="font-display text-3xl font-extrabold">{price ?? t.loading}</span>{price && <span className="text-muted-foreground">{t.perMonth}</span>}</p>
+                </div>
                 <ul className="flex flex-1 flex-col gap-2">
                   {p.f.map((f) => (
                     <li key={f} className="flex items-start gap-2"><Check className="mt-0.5 size-4 shrink-0 text-success" /> {f}</li>
                   ))}
                 </ul>
-                <WhatsAppLink message={withSource(m.plan(p.id), m.ref, `precios-${p.key}`)} className={featured ? btnPrimary : btnGhost}>
-                  <WhatsAppIcon className="size-5" /> {t.choose}
+                {plan.requiresCall && <p className="text-sm text-muted-foreground">{t.callNote}</p>}
+                <WhatsAppLink message={withSource(plan.requiresCall ? m.enterprise : m.plan(p.id), m.ref, `precios-${p.key}`)} className={featured ? btnPrimary : btnGhost}>
+                  {plan.requiresCall ? <Phone className="size-5" /> : <WhatsAppIcon className="size-5" />} {plan.requiresCall ? t.scheduleCall : t.choose}
                 </WhatsAppLink>
               </div>
             );

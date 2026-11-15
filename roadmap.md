@@ -28,3 +28,8 @@
 # Recipe wizard UX refinement
 - [x] Apply researched form simplicity, review, and error-prevention practices.
 - [x] Verify manual creation and guided animation; recipe validation tests pass.
+
+# Confirmed subscription plans
+- [x] Set fixed COP/USD monthly prices and replace Pro with Enterprise.
+- [x] Present Enterprise as a starting price with tailored options and call scheduling via WhatsApp.
+- [x] Verify country prices, Enterprise contact action, and mobile layout.

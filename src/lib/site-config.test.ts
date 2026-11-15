@@ -20,6 +20,31 @@ describe("centralized contact configuration", () => {
   });
 });
 describe("offer configuration", () => {
+  it("sets Emprendedor to 30,000 COP and 10 USD monthly", async () => {
+    const { SITE_CONFIG } = await import("./site-config");
+    expect(SITE_CONFIG.plans.entrepreneur.monthlyCop).toBe(30000);
+    expect(SITE_CONFIG.plans.entrepreneur.monthlyUsd).toBe(10);
+  });
+  it("sets Negocio to 150,000 COP and 50 USD monthly", async () => {
+    const { SITE_CONFIG } = await import("./site-config");
+    expect(SITE_CONFIG.plans.business.monthlyCop).toBe(150000);
+    expect(SITE_CONFIG.plans.business.monthlyUsd).toBe(50);
+  });
+  it("sets Enterprise starting prices to 500,000 COP and 200 USD monthly", async () => {
+    const { SITE_CONFIG } = await import("./site-config");
+    expect(SITE_CONFIG.plans.enterprise.monthlyCop).toBe(500000);
+    expect(SITE_CONFIG.plans.enterprise.monthlyUsd).toBe(200);
+    expect(SITE_CONFIG.plans.enterprise.startingPrice).toBe(true);
+    expect(SITE_CONFIG.plans.entrepreneur.startingPrice).toBe(false);
+    expect(SITE_CONFIG.plans.business.startingPrice).toBe(false);
+  });
+  it("requires a call for Enterprise only and removes Pro", async () => {
+    const { SITE_CONFIG } = await import("./site-config");
+    expect(SITE_CONFIG.plans.enterprise.requiresCall).toBe(true);
+    expect(SITE_CONFIG.plans.entrepreneur.requiresCall).toBe(false);
+    expect(SITE_CONFIG.plans.business.requiresCall).toBe(false);
+    expect(Object.keys(SITE_CONFIG.plans)).toEqual(["entrepreneur", "business", "enterprise"]);
+  });
   it("defines demo limits: 1 user, 10 inventory items, 2 products, 2 recipes", async () => {
     const { SITE_CONFIG } = await import("./site-config");
     expect(SITE_CONFIG.demo).toEqual({ users: 1, inventoryItems: 10, products: 2, recipes: 2 });

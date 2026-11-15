@@ -94,11 +94,14 @@ const es = {
     perMonth: "/mes",
     popular: "Más elegido",
     choose: "Elegir por WhatsApp",
+    from: "Desde",
+    scheduleCall: "Agendar llamada",
+    callNote: "Definimos tu solución en una llamada.",
     loading: "Consultando precio…",
     plans: [
       { id: "Emprendedor", key: "entrepreneur", d: "Para arrancar con un punto de venta.", f: ["3 dispositivos y 3 usuarios", "3 roles: mesero (crea órdenes), cocinero y administrador", "Comandas e inventario por receta", "Pantalla de cocina"] },
       { id: "Negocio", key: "business", d: "Para el negocio que ya no para.", f: ["Todo lo de Emprendedor", "10 dispositivos y 10 usuarios", "Plan de producción y lista de compras"] },
-      { id: "Pro", key: "pro", d: "Para equipos con más movimiento.", f: ["Todo lo de Negocio", "Dispositivos y usuarios ilimitados", "Roles y permisos de equipo a medida", "Auditoría", "Instalación de un pequeño servidor en tu local: funciona 100% sin internet", "Configuración de impresora tickera para órdenes y cocina (impresoras se cobran aparte)"] },
+      { id: "Enterprise", key: "enterprise", d: "Una solución a medida para tu operación.", f: ["Todo lo de Negocio", "Dispositivos y usuarios ilimitados", "Roles, permisos y auditoría", "Sistema local resiliente: operación completa sin depender de internet", "Puede incluir personalizaciones e integraciones con tus sistemas", "Venta y configuración de tablets, POS e impresoras para órdenes y cocina (equipos aparte)"] },
     ],
   },
   faq: {
@@ -134,6 +137,7 @@ const es = {
   msg: {
     default: "Hola, quiero probar la demo de listo.menu.\n\nNombre del negocio:\nCiudad:\nTipo de negocio:",
     plan: (p: string) => `Hola, me interesa el plan ${p} de listo.menu.\n\nNombre del negocio:\nCiudad:`,
+    enterprise: "Hola, quiero agendar una llamada para conocer el plan Enterprise de listo.menu.\n\nNombre del negocio:\nCiudad:\nNecesidades de mi operación:\nHorario para la llamada:",
     ref: "Ref",
     subject: "Quiero conocer listo.menu",
     body: "Hola, tengo un negocio de comida y quiero conocer listo.menu.\n\nNombre del negocio:\nCiudad:\nTipo de negocio:",
@@ -235,11 +239,14 @@ const en: Dict = {
     perMonth: "/mo",
     popular: "Most popular",
     choose: "Choose on WhatsApp",
+    from: "From",
+    scheduleCall: "Schedule a call",
+    callNote: "We'll define your solution on a call.",
     loading: "Checking price…",
     plans: [
       { id: "Starter", key: "entrepreneur", d: "To get going with one point of sale.", f: ["3 devices and 3 users", "3 roles: waiter (creates orders), cook and restaurant admin", "Orders and recipe-based inventory", "Kitchen screen"] },
       { id: "Business", key: "business", d: "For the business that never stops.", f: ["Everything in Starter", "10 devices and 10 users", "Production plan and shopping list"] },
-      { id: "Pro", key: "pro", d: "For busier teams.", f: ["Everything in Business", "Unlimited devices and users", "Custom team roles & permissions", "Audit log", "Small on-site server installed at your business: works 100% without internet", "Ticket printer setup for orders and kitchen (printers sold separately)"] },
+      { id: "Enterprise", key: "enterprise", d: "A solution tailored to your operation.", f: ["Everything in Business", "Unlimited devices and users", "Roles, permissions and audit log", "Resilient on-site system: full operation independent of the internet", "Can include customizations and integrations with your existing systems", "Tablet, POS and order/kitchen printer sales and setup (hardware sold separately)"] },
     ],
   },
   faq: {
@@ -275,6 +282,7 @@ const en: Dict = {
   msg: {
     default: "Hi, I'd like to try the listo.menu demo.\n\nBusiness name:\nCity:\nType of business:",
     plan: (p: string) => `Hi, I'm interested in the listo.menu ${p} plan.\n\nBusiness name:\nCity:`,
+    enterprise: "Hi, I'd like to schedule a call about the listo.menu Enterprise plan.\n\nBusiness name:\nCity:\nOperational needs:\nPreferred call time:",
     ref: "Ref",
     subject: "I'd like to learn about listo.menu",
     body: "Hi, I run a food business and I'd like to learn about listo.menu.\n\nBusiness name:\nCity:\nType of business:",
