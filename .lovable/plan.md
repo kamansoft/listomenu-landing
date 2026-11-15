@@ -13,11 +13,11 @@ Segmentos: 1) food trucks y puestos de feria (duda: internet); 2) empanaderias/k
 ## Cambios en el sitio (en orden de impacto)
 Las demos interactivas (recetas, cocina, plan de produccion, tipos de negocio) no se modifican: son la pre-demo y prueban el diferenciador "simple, sin pantallas llenas de controles". Solo se agrega texto y un boton junto a ellas.
 
-1. **Oferta "Plan gratis para siempre, sin tarjeta"** (sin limite de tiempo, limitado en usuarios, productos y recetas; limites exactos en la configuracion central, a confirmar) como boton principal en hero, precios y cierre. Mensaje de WhatsApp prellenado con negocio, ciudad y tipo, para calificar al lead.
+1. **Oferta "Prueba la demo sin tiempo limite, sin tarjeta"**: demo con 1 usuario, 10 insumos de inventario, 2 productos y 2 recetas (limites en la configuracion central). No se presenta como plan gratis. como boton principal en hero, precios y cierre. Mensaje de WhatsApp prellenado con negocio, ciudad y tipo, para calificar al lead.
 2. **Hero reescrito** con los diferenciadores: "Sabe que comprar para tu feria y vende aunque se caiga el internet". Franja de confianza debajo: "Sin tarjeta · Cancela cuando quieras · Hecho en Colombia por kamansoft".
-3. **Precios fijos precargados**: cada plan tiene un precio COP y un precio USD en la configuracion central. Colombia ve COP, el resto USD. Se elimina el conversor de moneda y la consulta de tasa. Se agrega una tarjeta "Gratis" antes de Emprendedor. Quitar "de referencia" y "Consultando precio". Mensaje de simplicidad en hero y comparativa: "Lo que ves arriba es la app real: pocas pantallas, sin capacitaciones". Linea "Todo incluido: pantalla de cocina y recetas sin costo extra". Opcion de descuento anual (a confirmar).
+3. **Precios fijos precargados**: cada plan tiene un precio COP y un precio USD en la configuracion central. Colombia ve COP, el resto USD. Se elimina el conversor de moneda y la consulta de tasa. Se agrega un aviso "Empieza con la demo" junto a los planes (no es un plan). Quitar "de referencia" y "Consultando precio". Mensaje de simplicidad en hero y comparativa: "Lo que ves arriba es la app real: pocas pantallas, sin capacitaciones". Linea "Todo incluido: pantalla de cocina y recetas sin costo extra". Opcion de descuento anual (a confirmar).
 4. **Tabla comparativa breve** "listo.menu vs. lo tipico" (interfaz simple para locales pequenos y medianos, cocina incluida, sin internet, lista de compras para eventos) sin nombrar marcas.
-5. **Nuevas preguntas frecuentes**: "¿Emite factura electronica DIAN?" (No; listo.menu lleva operacion, inventario y compras), "¿Cobra pagos o Nequi?" (No es pasarela; pronto podras registrar como te pagaron: efectivo, bancos, Nequi, y cuadrar cajas), limites del plan gratis, cuanto tarda empezar.
+5. **Nuevas preguntas frecuentes**: "¿Emite factura electronica DIAN?" (No; listo.menu lleva operacion, inventario y compras), "¿Cobra pagos o Nequi?" (No es pasarela; pronto podras registrar como te pagaron: efectivo, bancos, Nequi, y cuadrar cajas), limites de la demo, cuanto tarda empezar.
 6. **Seccion de confianza**: quien esta detras (kamansoft), garantia de acompanamiento y espacio para testimonios cuando existan (no inventaremos testimonios).
 7. **Boton flotante de WhatsApp** siempre visible en movil y escritorio, y CTA tras cada demo interactiva ("¿Quieres esto con tus recetas? Pruebalo gratis").
 8. **Medicion**: etiqueta en cada enlace de WhatsApp segun la seccion (hero, precios-plan, cocina, final) dentro del mensaje, para saber que seccion genera conversaciones.
@@ -33,7 +33,6 @@ Las demos interactivas (recetas, cocina, plan de produccion, tipos de negocio) n
 
 ## Necesito de ti
 - Precio COP y USD de cada plan (si no, propongo 59.900/109.900/179.900 COP y mantengo 14.90/27.04/45.30 USD, marcados para confirmar).
-- Limites del plan gratis (si no, propongo 1 usuario, 10 productos, 10 recetas).
 - Descuento anual: no lo incluyo salvo que me digas.
 
 ## Detalles tecnicos
