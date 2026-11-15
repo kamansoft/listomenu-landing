@@ -12,6 +12,7 @@ import { countryCurrency, formatPlanPrice } from "@/lib/localization";
 import { SITE_CONFIG } from "@/lib/site-config";
 import { KitchenBoard } from "./KitchenBoard";
 import { ProductionPlanner } from "./ProductionPlanner";
+import { RecipeBuilder } from "./RecipeBuilder";
 import { useViewportDemo } from "@/hooks/use-viewport-demo";
 import ordersImg from "@/assets/mockup-orders.jpg";
 import inventoryImg from "@/assets/mockup-inventory.jpg";
@@ -36,6 +37,7 @@ export function Landing({ lang }: { lang: Lang }) {
         <Hero lang={lang} />
         <Pains lang={lang} />
         <How lang={lang} />
+        <RecipeBuilder lang={lang} />
         <Features lang={lang} />
         <Kitchen lang={lang} />
         <ProductionPlan lang={lang} />

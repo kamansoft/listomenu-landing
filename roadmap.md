@@ -14,3 +14,8 @@
 - [x] Highlight business categories sequentially with a floating-forward effect.
 - [x] Gently animate visible WhatsApp links on load and scrolling.
 - [x] Verify order, visibility, mobile layout, and reduced motion.
+
+# Recipe and product demo
+- [x] Add an animated recipe builder immediately after How it works.
+- [x] Allow visitors to save recipes and create linked products in memory only.
+- [x] Verify creation, recipe quantities, reload reset, and mobile use.
