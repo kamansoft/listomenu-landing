@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, Boxes, Check, ChefHat, Plus, Save, Trash2, PackageCheck, Store, Wheat, Milk, Droplets, Beef, Soup } from "lucide-react";
+import { ArrowLeft, ArrowRight, Boxes, Check, ChefHat, Plus, Save, Trash2, PackageCheck, Store, Wheat, Milk, Droplets, Beef, Soup, Pencil } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import productImage from "@/assets/empanada-recipe.jpg";
 import { Button } from "@/components/ui/button";
@@ -25,6 +25,7 @@ export function RecipeBuilder({ lang }: { lang: Lang }) {
   const [recipeId, setRecipeId] = useState("");
   const [error, setError] = useState("");
   const [productError, setProductError] = useState("");
+  const [attempted, setAttempted] = useState(false);
   const nextId = useRef(0);
   const demo = useViewportDemo(8, step => {
     if (step < 3) { setStage(0); setLines(exampleLines.slice(0, step + 1).map(line => ({ ...line, quantity: 10 }))); }
@@ -44,6 +45,7 @@ export function RecipeBuilder({ lang }: { lang: Lang }) {
   };
   const save = () => {
     demo.stop();
+    setAttempted(true);
     const recipe = saveDemoRecipe(`recipe-${nextId.current++}`, name, lines);
     if (!recipe) { setError(t.invalid); return; }
     setRecipes(current => [...current, recipe]);
@@ -51,18 +53,19 @@ export function RecipeBuilder({ lang }: { lang: Lang }) {
     setError("");
     setStage(2);
     if (!productName) setProductName(name);
+    setAttempted(false);
   };
   const create = () => {
     demo.stop();
     const product = createDemoProduct(`product-${nextId.current++}`, productName, recipeId, recipes);
     if (!product) { setProductError(t.invalidProduct); return; }
     setProducts(current => [...current, product]);
-    setProductName("");
+    setProductName(product.name);
     setProductError("");
   };
   const unit = (id: InventoryId) => RECIPE_INVENTORY.find(item => item.id === id)?.unit;
   const ingredientIcon = (id: InventoryId) => id === "flour" ? Wheat : id === "cheese" ? Milk : id === "oil" ? Droplets : id === "beef" || id === "chicken" ? Beef : Soup;
-  const reset = () => { demo.stop(); setStage(0); setName(""); setLines([]); setProductName(""); setRecipeId(""); setError(""); setProductError(""); };
+  const reset = () => { demo.stop(); setStage(0); setName(""); setLines([]); setProductName(""); setRecipeId(""); setError(""); setProductError(""); setAttempted(false); };
   const currentProduct = products.find(product => product.recipeId === recipeId);
   return (
     <section className="border-b border-border bg-primary-surface">
@@ -99,25 +102,28 @@ export function RecipeBuilder({ lang }: { lang: Lang }) {
                       <p className="mt-4 text-sm text-muted-foreground">{t.selected}: <span className="font-bold text-primary">{lines.length}</span></p>
                     </>}
                     {stage === 1 && <>
-                      <label className="mb-3 flex flex-col gap-2 text-sm font-semibold">{t.name}<Input value={name} maxLength={80} onChange={event => setName(event.target.value)} className="h-11 bg-background" /></label>
-                      {lines.map(line => { const Icon = ingredientIcon(line.ingredient); return <div key={line.ingredient} className={`flex items-center gap-3 border-b border-border py-3 ${demo.activeStep === 4 ? "bg-primary-surface" : ""}`}><Icon className="size-5 shrink-0 text-primary" /><span className="min-w-0 flex-1 text-sm font-semibold">{ingredients[line.ingredient]}</span><Input type="number" min="0" step="any" aria-label={`${t.quantity} ${ingredients[line.ingredient]}`} value={line.quantity} onChange={event => setLines(current => current.map(item => item.ingredient === line.ingredient ? { ...item, quantity: Number(event.target.value) } : item))} className="h-11 w-20 shrink-0 bg-background text-right tabular-nums" /><span className="w-5 text-xs text-muted-foreground">{unit(line.ingredient)}</span><Button variant="ghost" size="icon" className="size-11 shrink-0" aria-label={`${t.remove} ${ingredients[line.ingredient]}`} onClick={() => setLines(current => current.filter(item => item.ingredient !== line.ingredient))}><Trash2 /></Button></div>; })}
+                      <label className="mb-3 flex flex-col gap-2 text-sm font-semibold">{t.productName}<Input value={name} maxLength={80} aria-invalid={attempted && !name.trim()} onChange={event => { setName(event.target.value); setError(""); }} className="h-11 bg-background" /></label>
+                      {lines.map(line => { const Icon = ingredientIcon(line.ingredient); return <div key={line.ingredient} className={`flex items-center gap-3 border-b border-border py-3 ${demo.activeStep === 4 ? "bg-primary-surface" : ""}`}><Icon className="size-5 shrink-0 text-primary" /><span className="min-w-0 flex-1 text-sm font-semibold">{ingredients[line.ingredient]}</span><Input type="number" min="0" step="any" inputMode="decimal" aria-invalid={attempted && (!Number.isFinite(line.quantity) || line.quantity <= 0)} aria-describedby={attempted && line.quantity <= 0 ? `quantity-error-${line.ingredient}` : undefined} aria-label={`${t.quantity} ${ingredients[line.ingredient]}`} value={line.quantity} onChange={event => setLines(current => current.map(item => item.ingredient === line.ingredient ? { ...item, quantity: Number(event.target.value) } : item))} className="h-11 w-20 shrink-0 bg-background text-right tabular-nums" />{attempted && line.quantity <= 0 && <span id={`quantity-error-${line.ingredient}`} className="text-xs text-destructive">{t.positive}</span>}<span className="w-5 text-xs text-muted-foreground">{unit(line.ingredient)}</span><Button variant="ghost" size="icon" className="size-11 shrink-0" aria-label={`${t.remove} ${ingredients[line.ingredient]}`} onClick={() => setLines(current => current.filter(item => item.ingredient !== line.ingredient))}><Trash2 /></Button></div>; })}
                       {error && <p role="alert" className="mt-3 text-sm text-destructive">{error}</p>}
                     </>}
-                    {stage === 2 && <form onSubmit={event => { event.preventDefault(); create(); }} className="flex flex-col gap-4">
-                      <div className="flex items-center gap-3 rounded-md bg-success-surface p-3 text-success"><Check className="size-5 shrink-0" /><span className="text-sm font-bold">{t.saved}: {recipes.find(recipe => recipe.id === recipeId)?.name}</span></div>
-                      <label className="flex flex-col gap-2 text-sm font-semibold">{t.productName}<Input value={productName} maxLength={80} onChange={event => setProductName(event.target.value)} className="h-11 bg-background" /></label>
-                      <label className="flex flex-col gap-2 text-sm font-semibold">{t.linkedRecipe}<select value={recipeId} onChange={event => setRecipeId(event.target.value)} className="h-11 w-full rounded-md border border-input bg-background px-3 text-sm"><option value="">—</option>{recipes.map(recipe => <option key={recipe.id} value={recipe.id}>{recipe.name}</option>)}</select></label>
-                      {productError && <p role="alert" className="text-sm text-destructive">{productError}</p>}
-                      <Button type="submit" className="min-h-11 self-start"><PackageCheck />{t.create}</Button>
-                    </form>}
+                    {stage === 2 && <div className="flex flex-col gap-4">
+                      {currentProduct ? <div role="status" className="flex items-center gap-3 rounded-md bg-success-surface p-4 text-success"><PackageCheck className="size-6 shrink-0" /><div><p className="font-bold">{currentProduct.name}</p><p className="text-sm">{t.ready}</p></div></div> : <>
+                        <label className="flex flex-col gap-2 text-sm font-semibold">{t.productName}<Input value={productName} maxLength={80} aria-invalid={Boolean(productError)} onChange={event => { setProductName(event.target.value); setProductError(""); }} className="h-11 bg-background" /></label>
+                        <div className="flex items-center justify-between gap-3 border-b border-border pb-3"><span className="text-sm text-muted-foreground">{t.recipe}</span><Button variant="ghost" className="min-h-11" onClick={() => setStage(1)}><Pencil />{t.edit}</Button></div>
+                        <dl className="divide-y divide-border">{lines.map(line => <div key={line.ingredient} className="flex justify-between gap-4 py-2 text-sm"><dt>{ingredients[line.ingredient]}</dt><dd className="font-bold tabular-nums">{line.quantity} {unit(line.ingredient)}</dd></div>)}</dl>
+                        {productError && <p role="alert" className="text-sm text-destructive">{productError}</p>}
+                      </>}
+                    </div>}
+
                   </motion.div>
                 </AnimatePresence>
               </div>
               <div className="mt-5 flex items-center justify-between gap-3 border-t border-border pt-4">
                 <Button variant="ghost" className="min-h-11" disabled={stage === 0} onClick={() => setStage(current => Math.max(0, current - 1))}><ArrowLeft />{t.back}</Button>
                 {stage === 0 && <Button className="min-h-11" disabled={lines.length === 0} onClick={() => setStage(1)}>{t.next}<ArrowRight /></Button>}
-                {stage === 1 && <Button className="min-h-11" onClick={save}><Save />{t.save}<ArrowRight /></Button>}
-                {stage === 2 && currentProduct && <span className="flex items-center gap-2 text-sm font-bold text-success"><Check className="size-4" />{t.ready}</span>}
+                {stage === 1 && <Button className="min-h-11" onClick={save}>{t.review}<ArrowRight /></Button>}
+                {stage === 2 && !currentProduct && <Button className="min-h-11" onClick={create}><Save />{t.create}</Button>}
+                {stage === 2 && currentProduct && <Button className="min-h-11" onClick={reset}><Plus />{t.newRecipe}</Button>}
               </div>
             </div>
             <aside className="min-w-0 border-t border-border bg-muted/40 p-4 sm:p-6 lg:border-l lg:border-t-0">

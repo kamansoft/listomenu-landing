@@ -24,3 +24,7 @@
 - [x] Replace simultaneous forms with a three-step app-like recipe wizard and live product preview.
 - [x] Animate the guided example and retain manual recipe/product creation.
 - [x] Verify guided sequence and manual creation on desktop and mobile.
+
+# Recipe wizard UX refinement
+- [x] Apply researched form simplicity, review, and error-prevention practices.
+- [x] Verify manual creation and guided animation; recipe validation tests pass.

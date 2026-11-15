@@ -48,6 +48,7 @@ const es = {
     stageTitles: ["Elige los ingredientes", "Define cuánto lleva una unidad", "Tu receta se convierte en producto"],
     preview: "Vista del producto", draft: "Borrador", ready: "Producto guardado", perUnit: "Por cada unidad",
     catalog: "Catálogo", selected: "Seleccionados", photo: "Empanada de queso de ejemplo",
+    review: "Revisar producto", edit: "Editar", positive: "Mayor que 0",
   },
   features: {
     title: "Todo lo que tu negocio necesita para servir sin parar",
@@ -168,6 +169,7 @@ const en: Dict = {
     stageTitles: ["Choose the ingredients", "Set the quantities for one unit", "Your recipe becomes a product"],
     preview: "Product preview", draft: "Draft", ready: "Product saved", perUnit: "Per unit",
     catalog: "Catalog", selected: "Selected", photo: "Example cheese empanada",
+    review: "Review product", edit: "Edit", positive: "Greater than 0",
   },
   features: {
     title: "Everything your business needs to keep serving",
