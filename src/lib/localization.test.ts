@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { countryCurrency, countryLanguage, convertUsdToCop, formatPlanPrice, parseCountryTrace } from "./localization";
+import { countryCurrency, countryLanguage, formatPlanPrice, parseCountryTrace } from "./localization";
 
 describe("visitor country rules", () => {
   it("always selects Spanish for Colombia", () => expect(countryLanguage("CO")).toBe("es"));
@@ -20,17 +20,12 @@ describe("visitor country rules", () => {
   });
 });
 
-describe("USD to COP conversion", () => {
-  it("converts USD base prices to Colombian pesos", () => {
-    expect(convertUsdToCop(14.90, 4000)).toBe(59600);
-    expect(convertUsdToCop(27.04, 4000)).toBe(108160);
-    expect(convertUsdToCop(45.30, 4000)).toBe(181200);
+describe("fixed plan prices", () => {
+  const plan = { monthlyUsd: 14.90, monthlyCop: 59900 };
+  it("shows the preloaded COP price for Colombia", () => {
+    expect(formatPlanPrice(plan, "COP", "es").replace(/\D/g, "")).toBe("59900");
   });
-  it("rounds COP to whole pesos", () => expect(convertUsdToCop(14.90, 3285.261046)).toBe(48950));
-  it("keeps USD available unchanged without an exchange rate", () => {
-    const displayed = formatPlanPrice(14.90, "USD", "en");
-    expect(Number(displayed?.replace(/[^0-9.]/g, ""))).toBe(14.90);
+  it("shows the preloaded USD price elsewhere", () => {
+    expect(Number(formatPlanPrice(plan, "USD", "en").replace(/[^0-9.]/g, ""))).toBe(14.90);
   });
-  it("never relabels USD when the COP rate is unavailable", () => expect(formatPlanPrice(14.90, "COP", "es")).toBeNull());
-  it("rejects invalid rates", () => expect(() => convertUsdToCop(14.90, 0)).toThrow());
 });

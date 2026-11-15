@@ -19,3 +19,17 @@ describe("centralized contact configuration", () => {
     }
   });
 });
+describe("offer configuration", () => {
+  it("defines demo limits: 1 user, 10 inventory items, 2 products, 2 recipes", async () => {
+    const { SITE_CONFIG } = await import("./site-config");
+    expect(SITE_CONFIG.demo).toEqual({ users: 1, inventoryItems: 10, products: 2, recipes: 2 });
+  });
+  it("uses the real contact email", async () => {
+    const { SITE_CONFIG } = await import("./site-config");
+    expect(SITE_CONFIG.contact.email).toBe("kamansoft@gmail.com");
+  });
+  it("tags WhatsApp messages with their section", async () => {
+    const { withSource } = await import("./contact");
+    expect(withSource("Hola", "Ref", "hero")).toBe("Hola\n\n(Ref: hero)");
+  });
+});

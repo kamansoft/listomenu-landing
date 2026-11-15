@@ -20,14 +20,8 @@ export function parseCountryTrace(trace: string): string | null {
   return country && country !== "XX" ? country : null;
 }
 
-export function convertUsdToCop(usd: number, copPerUsd: number): number {
-  if (!Number.isFinite(copPerUsd) || copPerUsd <= 0) throw new Error("Invalid exchange rate");
-  return Math.round(usd * copPerUsd);
-}
-
-export function formatPlanPrice(usd: number, currency: "COP" | "USD", lang: Lang, copPerUsd?: number): string | null {
-  if (currency === "COP" && (!copPerUsd || !Number.isFinite(copPerUsd) || copPerUsd <= 0)) return null;
-  const amount = currency === "USD" ? usd : convertUsdToCop(usd, copPerUsd ?? 0);
+export function formatPlanPrice(plan: { monthlyUsd: number; monthlyCop: number }, currency: "COP" | "USD", lang: Lang): string {
+  const amount = currency === "USD" ? plan.monthlyUsd : plan.monthlyCop;
   return `${new Intl.NumberFormat(lang === "es" ? "es-CO" : "en-US", {
     style: "currency", currency, currencyDisplay: "narrowSymbol",
     minimumFractionDigits: currency === "COP" ? 0 : 2,

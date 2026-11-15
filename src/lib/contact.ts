@@ -19,3 +19,8 @@ export function whatsappUrl(message: string, mobile: boolean): string {
 export function mailtoUrl(subject: string, body: string): string {
   return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
+
+/** Tags a prefilled WhatsApp message with the page section that produced it. */
+export function withSource(message: string, label: string, source: string): string {
+  return `${message}\n\n(${label}: ${source})`;
+}
