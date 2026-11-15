@@ -6,6 +6,6 @@
 - [x] Verify country cases, conversion, language switching, and service failures.
 
 # Interactive sales examples
-- [ ] Animate kitchen cards once on entering view, then allow adjacent forward/backward moves.
-- [ ] Animate production quantities and shopping totals once, then hand control to the visitor.
-- [ ] Verify desktop/mobile interaction, reduced motion, and transition rules.
+- [x] Animate kitchen cards once on entering view, then allow adjacent forward/backward moves.
+- [x] Animate production quantities and shopping totals once, then hand control to the visitor.
+- [x] Verify desktop/mobile interaction, reduced motion, and transition rules.
