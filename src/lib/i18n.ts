@@ -21,7 +21,7 @@ const es = {
   },
   hero: {
     eyebrow: "Para food trucks, empanaderías y kioscos",
-    title: "Sabe qué comprar para tu feria y vende aunque se caiga el internet",
+    title: "Saber qué comprar para tu negocio, y vende aunque se caiga el internet",
     body: "Comandas, pantalla de cocina e inventario que se descuenta solo por receta. Dices cuánto vas a vender y listo.menu te da la lista de compras. Simple: pocas pantallas, sin capacitaciones.",
     cta: "Quiero probar la demo",
     email: "¿Prefieres correo? Escríbenos",
@@ -177,7 +177,7 @@ const en: Dict = {
   },
   hero: {
     eyebrow: "For food trucks, empanada stands and kiosks",
-    title: "Know what to buy for your event and keep selling when the internet drops",
+    title: "Know what to buy for your business and keep selling when the internet drops",
     body: "Orders, a kitchen screen and inventory that deducts itself by recipe. Tell it how much you'll sell and listo.menu gives you the shopping list. Simple: few screens, no training.",
     cta: "Try the demo",
     email: "Prefer email? Write to us",
