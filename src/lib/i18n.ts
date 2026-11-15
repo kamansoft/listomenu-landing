@@ -48,6 +48,7 @@ const es = {
     title: "Tu cocina en un tablero, ítem por ítem",
     body: "Cada orden se divide en sus ítems y cada uno avanza por columnas. La cocina ve trabajo, no combos.",
     cols: ["Pendiente", "En preparación", "Listo"],
+    moveTo: "Mover a",
     cards: [["#14 · 2× Empanada de carne mechada", "#15 · 1× Empanada de queso"], ["#13 · 3× Empanada de pollo · sin cebolla"], ["#12 · 1× Empanada de carne mechada"]],
   },
   plan: {
@@ -150,6 +151,7 @@ const en: Dict = {
     title: "Your kitchen on a board, item by item",
     body: "Each order splits into its items and each one moves across columns. The kitchen sees work, not combos.",
     cols: ["To do", "Cooking", "Ready"],
+    moveTo: "Move to",
     cards: [["#14 · 2× Shredded-beef empanada", "#15 · 1× Cheese empanada"], ["#13 · 3× Chicken empanada · no onion"], ["#12 · 1× Shredded-beef empanada"]],
   },
   plan: {

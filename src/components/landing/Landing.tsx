@@ -1,17 +1,17 @@
 import { Link } from "@tanstack/react-router";
-import { useState } from "react";
 import {
   Boxes, ChefHat, ClipboardList, Layers, PackageCheck, Receipt, ShoppingBasket,
   Timer, TrendingUp, WifiOff, AlertTriangle, HelpCircle, Check, Mail, Truck, Store, UtensilsCrossed, Soup, Building2, PartyPopper,
 } from "lucide-react";
 import { BrandLockup, CheckO } from "@/components/brand/logo";
 import { dict, type Lang } from "@/lib/i18n";
-import { DEMO_PRODUCTS, ingredientNeeds } from "@/lib/production";
 import { CONTACT_EMAIL, WHATSAPP_DISPLAY } from "@/lib/contact";
 import { EmailLink, WhatsAppIcon, WhatsAppLink } from "./ContactLinks";
 import { useVisitorLocation } from "./VisitorLocation";
 import { countryCurrency, formatPlanPrice } from "@/lib/localization";
 import { SITE_CONFIG } from "@/lib/site-config";
+import { KitchenBoard } from "./KitchenBoard";
+import { ProductionPlanner } from "./ProductionPlanner";
 import ordersImg from "@/assets/mockup-orders.jpg";
 import inventoryImg from "@/assets/mockup-inventory.jpg";
 import truckImg from "@/assets/foodtruck.jpg";
@@ -205,53 +205,13 @@ function Features({ lang }: { lang: Lang }) {
   );
 }
 
-function fmt(qty: number, unit: string, lang: Lang) {
-  if (unit === "kg" && qty < 1) return `${Math.round(qty * 1000)} g`;
-  return `${qty.toLocaleString(lang === "es" ? "es-CO" : "en-US", { maximumFractionDigits: 2 })} ${unit}`;
-}
-
 function ProductionPlan({ lang }: { lang: Lang }) {
   const t = dict[lang].plan;
-  const [plan, setPlan] = useState<Record<string, number>>({ beef: 120, chicken: 80, cheese: 50 });
-  const needs = ingredientNeeds(DEMO_PRODUCTS, plan);
   return (
     <section className="bg-primary-surface">
       <div className={`${wrap} py-12 lg:py-20`}>
         <SectionTitle eyebrow={t.eyebrow} title={t.title} sub={t.body} />
-        <div className="grid gap-4 lg:grid-cols-2 lg:gap-8">
-          <div className="flex flex-col gap-2 rounded-xl border border-border bg-card p-4 sm:p-6">
-            {DEMO_PRODUCTS.map((p) => (
-              <label key={p.id} className="flex flex-wrap items-center justify-between gap-4 border-b border-border py-3 last:border-0">
-                <span className="font-display text-lg font-bold">{t.products[p.id as keyof typeof t.products]}</span>
-                <span className="flex items-center gap-2">
-                  <input
-                    type="number" min={0} max={9999} inputMode="numeric"
-                    value={plan[p.id] ?? 0}
-                    onChange={(e) => setPlan({ ...plan, [p.id]: Math.max(0, Number(e.target.value) || 0) })}
-                    className="h-11 w-24 rounded-md border border-input bg-background px-3 text-right font-display text-lg font-bold focus:outline-none focus:ring-2 focus:ring-ring"
-                  />
-                  <span className="text-sm text-muted-foreground">{t.units}</span>
-                </span>
-              </label>
-            ))}
-          </div>
-          <div className="rounded-xl bg-card p-4 shadow-panel sm:p-6">
-            <h3 className="mb-4 flex items-center gap-2 text-xl font-bold"><ShoppingBasket className="size-5 text-primary" /> {t.list}</h3>
-            {needs.length === 0 ? (
-              <p className="text-muted-foreground">{t.empty}</p>
-            ) : (
-              <ul className="flex flex-col">
-                {needs.map((n) => (
-                  <li key={n.ingredient} className="flex items-center justify-between gap-4 border-b border-dashed border-border py-3 last:border-0">
-                    <span className="flex items-center gap-2"><CheckO className="size-4 text-primary" /> {t.ingredients[n.ingredient as keyof typeof t.ingredients]}</span>
-                    <span className="font-display text-lg font-extrabold tabular-nums">{fmt(n.qty, n.unit, lang)}</span>
-                  </li>
-                ))}
-              </ul>
-            )}
-            <p className="mt-4 text-sm text-muted-foreground">{t.note}</p>
-          </div>
-        </div>
+        <ProductionPlanner lang={lang} />
       </div>
     </section>
   );
@@ -361,23 +321,10 @@ function Final({ lang }: { lang: Lang }) {
 
 function Kitchen({ lang }: { lang: Lang }) {
   const t = dict[lang].kitchen;
-  const tones = ["bg-warning-surface text-warning", "bg-primary-surface text-primary", "bg-success-surface text-success"];
   return (
     <section className={`${wrap} pb-12 lg:pb-20`}>
       <SectionTitle eyebrow={t.eyebrow} title={t.title} sub={t.body} />
-      <div className="grid gap-4 overflow-x-auto md:grid-cols-3">
-        {t.cols.map((c, i) => (
-          <div key={c} className="flex min-h-48 flex-col gap-2 rounded-xl border border-border bg-muted p-4">
-            <div className="mb-2 flex items-center justify-between">
-              <h3 className="font-bold">{c}</h3>
-              <span className={`rounded-full px-2 py-0.5 text-xs font-bold ${tones[i] ?? ""}`}>{t.cards[i]?.length ?? 0}</span>
-            </div>
-            {(t.cards[i] ?? []).map((card) => (
-              <div key={card} className="rounded-lg border border-border bg-card p-3 text-sm font-semibold shadow-panel">{card}</div>
-            ))}
-          </div>
-        ))}
-      </div>
+      <KitchenBoard lang={lang} />
     </section>
   );
 }
