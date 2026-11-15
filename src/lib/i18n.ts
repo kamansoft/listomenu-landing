@@ -26,7 +26,7 @@ const es = {
     cta: "Quiero probar la demo",
     email: "¿Prefieres correo? Escríbenos",
     note: "Demo sin límite de tiempo · Sin tarjeta · Te la activamos por WhatsApp el mismo día",
-    trust: ["Sin tarjeta", "Cancela cuando quieras", "Hecho en Colombia por kamansoft"],
+    trust: ["Sin tarjeta", "Cancela cuando quieras"],
   },
   pains: {
     title: "¿Te suena familiar?",
@@ -182,7 +182,7 @@ const en: Dict = {
     cta: "Try the demo",
     email: "Prefer email? Write to us",
     note: "Demo with no time limit · No card · Activated on WhatsApp the same day",
-    trust: ["No card", "Cancel anytime", "Made in Colombia by kamansoft"],
+    trust: ["No card", "Cancel anytime"],
   },
   pains: {
     title: "Sound familiar?",
