@@ -200,6 +200,14 @@
   to { transform: translateY(0); color: var(--foreground); }
 }
 .demo-total { animation: demo-total-change 450ms ease-out; }
+.business-types { perspective: 900px; }
+.business-type { position: relative; transform-origin: center; }
+@keyframes business-float-forward {
+  0%, 100% { transform: translateZ(0) translateY(0); box-shadow: none; }
+  40%, 65% { transform: translateZ(36px) translateY(-5px); box-shadow: var(--shadow-lift); }
+}
+.business-type-active { z-index: 1; animation: business-float-forward 1200ms ease-in-out; }
 @media (prefers-reduced-motion: reduce) {
   .demo-total { animation: none; }
+  .business-type-active { animation: none; }
 }

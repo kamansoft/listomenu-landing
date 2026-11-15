@@ -9,3 +9,8 @@
 - [x] Animate kitchen cards once on entering view, then allow adjacent forward/backward moves.
 - [x] Animate production quantities and shopping totals once, then hand control to the visitor.
 - [x] Verify desktop/mobile interaction, reduced motion, and transition rules.
+
+# Scroll highlights
+- [x] Highlight business categories sequentially with a floating-forward effect.
+- [x] Gently animate visible WhatsApp links on load and scrolling.
+- [x] Verify order, visibility, mobile layout, and reduced motion.

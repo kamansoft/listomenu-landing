@@ -12,6 +12,7 @@ import { countryCurrency, formatPlanPrice } from "@/lib/localization";
 import { SITE_CONFIG } from "@/lib/site-config";
 import { KitchenBoard } from "./KitchenBoard";
 import { ProductionPlanner } from "./ProductionPlanner";
+import { useViewportDemo } from "@/hooks/use-viewport-demo";
 import ordersImg from "@/assets/mockup-orders.jpg";
 import inventoryImg from "@/assets/mockup-inventory.jpg";
 import truckImg from "@/assets/foodtruck.jpg";
@@ -219,17 +220,18 @@ function ProductionPlan({ lang }: { lang: Lang }) {
 
 function Who({ lang }: { lang: Lang }) {
   const t = dict[lang].who;
+  const demo = useViewportDemo(t.items.length, () => {});
   return (
     <section className={`${wrap} grid gap-8 py-12 lg:grid-cols-2 lg:items-center lg:py-20`}>
       <img src={truckImg} alt={dict[lang].alt.truck} loading="lazy" width={1280} height={896} className="w-full rounded-2xl object-cover shadow-panel" />
-      <div>
+      <div ref={demo.ref} data-testid="business-types">
         <SectionTitle title={t.title} />
-        <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+        <ul className="business-types grid grid-cols-1 gap-3 sm:grid-cols-2">
           {t.items.map((w, i) => {
             const Icon = whoIcons[i] ?? Check;
             return (
-              <li key={w} className="flex min-h-11 items-center gap-3 rounded-lg border border-border bg-card px-4 py-3 font-semibold">
-                <Icon className="size-5 text-primary" /> {w}
+              <li key={w} data-business-index={i} data-highlighted={demo.activeStep === i} className={`business-type flex min-h-11 items-center gap-3 rounded-lg border bg-card px-4 py-3 font-semibold ${demo.activeStep === i ? "business-type-active border-primary" : "border-border"}`}>
+                <Icon className="size-5 shrink-0 text-primary" /> {w}
               </li>
             );
           })}
