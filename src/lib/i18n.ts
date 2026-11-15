@@ -44,6 +44,10 @@ const es = {
     newRecipe: "Nueva receta", invalid: "Agrega un nombre e ingredientes con cantidades mayores que cero.",
     invalidProduct: "Escribe el nombre del producto y selecciona una receta guardada.",
     demo: "Demostración temporal · Las recetas y productos se borran al recargar.",
+    steps: ["Ingredientes", "Cantidades", "Producto"], next: "Continuar", back: "Atrás",
+    stageTitles: ["Elige los ingredientes", "Define cuánto lleva una unidad", "Tu receta se convierte en producto"],
+    preview: "Vista del producto", draft: "Borrador", ready: "Producto guardado", perUnit: "Por cada unidad",
+    catalog: "Catálogo", selected: "Seleccionados", photo: "Empanada de queso de ejemplo",
   },
   features: {
     title: "Todo lo que tu negocio necesita para servir sin parar",
@@ -160,6 +164,10 @@ const en: Dict = {
     newRecipe: "New recipe", invalid: "Add a name and ingredients with quantities greater than zero.",
     invalidProduct: "Enter a product name and select a saved recipe.",
     demo: "Temporary demo · Recipes and products disappear on reload.",
+    steps: ["Ingredients", "Quantities", "Product"], next: "Continue", back: "Back",
+    stageTitles: ["Choose the ingredients", "Set the quantities for one unit", "Your recipe becomes a product"],
+    preview: "Product preview", draft: "Draft", ready: "Product saved", perUnit: "Per unit",
+    catalog: "Catalog", selected: "Selected", photo: "Example cheese empanada",
   },
   features: {
     title: "Everything your business needs to keep serving",

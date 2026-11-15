@@ -19,3 +19,8 @@
 - [x] Add an animated recipe builder immediately after How it works.
 - [x] Allow visitors to save recipes and create linked products in memory only.
 - [x] Verify creation, recipe quantities, reload reset, and mobile use.
+
+# Visual recipe wizard
+- [x] Replace simultaneous forms with a three-step app-like recipe wizard and live product preview.
+- [x] Animate the guided example and retain manual recipe/product creation.
+- [x] Verify guided sequence and manual creation on desktop and mobile.
