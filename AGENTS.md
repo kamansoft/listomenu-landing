@@ -31,3 +31,4 @@ use the editor.
 
 - Landing site is fully static: every page is prerendered via `pages` in vite.config.ts (add new language/page paths there); no backend. Why: served as static HTML on Cloudflare.
 - Languages live under `/$lang` (es|en) with all copy in `src/lib/i18n.ts`; brand lockup/tokens mirror the listomenu-gui app. Why: keep the site multilingual and visually coherent with the app.
+- Resolve visitor localization in a shared client-effect provider using Cloudflare's CORS trace and fetch daily COP exchange rates from ExchangeRate-API; never assume unknown location means Colombia or substitute COP for unavailable USD. Why: preserve static prerendering without inventing location or conversion values.

@@ -9,6 +9,8 @@ import { dict, type Lang } from "@/lib/i18n";
 import { DEMO_PRODUCTS, ingredientNeeds } from "@/lib/production";
 import { CONTACT_EMAIL, WHATSAPP_DISPLAY } from "@/lib/contact";
 import { EmailLink, WhatsAppIcon, WhatsAppLink } from "./ContactLinks";
+import { useVisitorLocation } from "./VisitorLocation";
+import { countryCurrency, formatPlanPrice } from "@/lib/localization";
 import ordersImg from "@/assets/mockup-orders.jpg";
 import inventoryImg from "@/assets/mockup-inventory.jpg";
 import truckImg from "@/assets/foodtruck.jpg";
@@ -60,6 +62,7 @@ export function Landing({ lang }: { lang: Lang }) {
 
 function Header({ lang }: { lang: Lang }) {
   const t = dict[lang];
+  const { country, chooseLanguage } = useVisitorLocation();
   return (
     <header className="sticky top-0 z-30 border-b border-border bg-background/90 pt-[env(safe-area-inset-top)] backdrop-blur">
       <div className={`${wrap} flex items-center justify-between gap-4 py-3`}>
@@ -67,9 +70,9 @@ function Header({ lang }: { lang: Lang }) {
           <BrandLockup />
         </Link>
         <nav className="flex items-center gap-2">
-          <Link to="/$lang" params={{ lang: t.nav.langCode }} hrefLang={t.nav.langCode} className="inline-flex min-h-11 items-center rounded-md px-3 text-sm font-semibold text-muted-foreground hover:text-primary">
+          {country !== "CO" && <Link to="/$lang" params={{ lang: t.nav.langCode }} onClick={() => chooseLanguage(t.nav.langCode)} hrefLang={t.nav.langCode} className="inline-flex min-h-11 items-center rounded-md px-3 text-sm font-semibold text-muted-foreground hover:text-primary">
             {t.nav.lang}
-          </Link>
+          </Link>}
           <WhatsAppLink message={t.msg.default} className={`${btnPrimary} px-3 sm:px-5`}>
             <WhatsAppIcon className="size-5" />
             <span className="hidden sm:inline">{t.nav.whatsapp}</span>
@@ -275,6 +278,8 @@ function Who({ lang }: { lang: Lang }) {
 function Pricing({ lang }: { lang: Lang }) {
   const t = dict[lang].pricing;
   const m = dict[lang].msg;
+  const { country, ready, rateReady, usdPerCop, rateDate } = useVisitorLocation();
+  const currency = countryCurrency(country);
   return (
     <section className="border-y border-border bg-card">
       <div className={`${wrap} py-12 lg:py-20`}>
@@ -282,12 +287,14 @@ function Pricing({ lang }: { lang: Lang }) {
         <div className="grid gap-4 md:grid-cols-3">
           {t.plans.map((p, i) => {
             const featured = i === 1;
+            const cop = Number(p.price.replace(/[^0-9]/g, ""));
+            const price = currency ? formatPlanPrice(cop, currency, lang, usdPerCop) : null;
             return (
               <div key={p.id} className={`relative flex flex-col gap-4 rounded-2xl border p-6 ${featured ? "border-primary bg-primary-surface shadow-lift" : "border-border bg-background"}`}>
                 {featured && <span className="absolute -top-3 left-6 rounded-full bg-primary px-3 py-1 text-xs font-bold text-primary-foreground">{t.popular}</span>}
                 <h3 className="text-2xl font-extrabold">{p.id}</h3>
                 <p className="text-muted-foreground">{p.d}</p>
-                <p><span className="font-display text-3xl font-extrabold">{p.price}</span><span className="text-muted-foreground">{t.perMonth}</span></p>
+                <p className="min-h-10" aria-live="polite"><span className="font-display text-3xl font-extrabold">{price ?? (!ready || !rateReady ? t.loading : t.unavailable)}</span>{price && <span className="text-muted-foreground">{t.perMonth}</span>}</p>
                 <ul className="flex flex-1 flex-col gap-2">
                   {p.f.map((f) => (
                     <li key={f} className="flex items-start gap-2"><Check className="mt-0.5 size-4 shrink-0 text-success" /> {f}</li>
@@ -300,6 +307,7 @@ function Pricing({ lang }: { lang: Lang }) {
             );
           })}
         </div>
+        {currency === "USD" && rateDate && <p className="mt-6 text-sm text-muted-foreground">{t.conversion} {rateDate}. <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">{t.rateSource}</a></p>}
       </div>
     </section>
   );

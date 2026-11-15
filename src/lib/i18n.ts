@@ -71,6 +71,10 @@ const es = {
     perMonth: "/mes",
     popular: "Más elegido",
     choose: "Elegir por WhatsApp",
+    loading: "Consultando precio…",
+    unavailable: "Consultar precio",
+    conversion: "Precios en USD convertidos desde COP. Tasa del",
+    rateSource: "Tipo de cambio: ExchangeRate-API",
     plans: [
       { id: "Emprendedor", price: "$49.000 COP", d: "Para arrancar con un punto de venta.", f: ["3 dispositivos y 3 usuarios", "3 roles: mesero (crea órdenes), cocinero y administrador", "Comandas e inventario por receta", "Pantalla de cocina"] },
       { id: "Negocio", price: "$89.000 COP", d: "Para el negocio que ya no para.", f: ["Todo lo de Emprendedor", "10 dispositivos y 10 usuarios", "Plan de producción y lista de compras"] },
@@ -169,6 +173,10 @@ const en: Dict = {
     perMonth: "/mo",
     popular: "Most popular",
     choose: "Choose on WhatsApp",
+    loading: "Checking price…",
+    unavailable: "Request price",
+    conversion: "USD prices converted from COP. Exchange rate dated",
+    rateSource: "Exchange rate: ExchangeRate-API",
     plans: [
       { id: "Starter", price: "$49,000 COP", d: "To get going with one point of sale.", f: ["3 devices and 3 users", "3 roles: waiter (creates orders), cook and restaurant admin", "Orders and recipe-based inventory", "Kitchen screen"] },
       { id: "Business", price: "$89,000 COP", d: "For the business that never stops.", f: ["Everything in Starter", "10 devices and 10 users", "Production plan and shopping list"] },
