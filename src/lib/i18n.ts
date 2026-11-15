@@ -128,7 +128,7 @@ const es = {
   },
   trust: {
     title: "Detrás de listo.menu",
-    body: "Somos kamansoft, un equipo colombiano de software. Te atendemos directamente por WhatsApp: tú hablas con quien construye la app.",
+    body: "listo.menu es un producto de kamansoft: un equipo de ingenieros que entiende tu operación antes de construir soluciones. Tu negocio va primero. Los ingenieros lideran, la IA ayuda y las personas revisan los resultados. Así creamos herramientas simples para ahorrar tiempo y reducir errores. Por WhatsApp hablas directamente con el equipo que construye listo.menu.",
     items: ["Acompañamiento en la configuración inicial", "Respuesta el mismo día", "Cancela cuando quieras"],
   },
   tryCta: { title: "¿Quieres verlo con tus propias recetas?", cta: "Probar la demo" },
@@ -273,7 +273,7 @@ const en: Dict = {
   },
   trust: {
     title: "Behind listo.menu",
-    body: "We're kamansoft, a Colombian software team. We reply directly on WhatsApp: you talk to the people who build the app.",
+    body: "listo.menu is a kamansoft product: a team of engineers who understand your operation before building solutions. Business first. Engineers lead, AI assists, humans review the results. That's how we build simple tools to save time and reduce errors. On WhatsApp, you talk directly to the team building listo.menu.",
     items: ["Help with your initial setup", "Same-day reply", "Cancel anytime"],
   },
   tryCta: { title: "Want to see it with your own recipes?", cta: "Try the demo" },
