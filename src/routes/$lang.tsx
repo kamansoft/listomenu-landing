@@ -1,6 +1,8 @@
-import { createFileRoute, notFound } from "@tanstack/react-router";
+import { createFileRoute, notFound, useNavigate } from "@tanstack/react-router";
+import { useEffect } from "react";
 import { dict, isLang } from "@/lib/i18n";
 import { Landing } from "@/components/landing/Landing";
+import { useVisitorLocation } from "@/components/landing/VisitorLocation";
 
 export const Route = createFileRoute("/$lang")({
   beforeLoad: ({ params }) => {
@@ -30,5 +32,12 @@ export const Route = createFileRoute("/$lang")({
 
 function LangPage() {
   const { lang } = Route.useParams();
-  return isLang(lang) ? <Landing lang={lang} /> : null;
+  const navigate = useNavigate();
+  const { ready, preferredLanguage } = useVisitorLocation();
+  useEffect(() => {
+    if (ready && lang !== preferredLanguage) {
+      void navigate({ to: "/$lang", params: { lang: preferredLanguage }, replace: true });
+    }
+  }, [ready, lang, preferredLanguage, navigate]);
+  return isLang(lang) ? <Landing lang={ready ? preferredLanguage : lang} /> : null;
 }

@@ -180,6 +180,7 @@
 }
 
 /* listo.menu brand lockup: 44px tall, 12px gap, icon and wordmark aligned top and bottom */
+.landing-anchor { scroll-margin-top: 88px; }
 .brand { display: inline-grid; grid-template-columns: 44px auto; align-items: center; gap: 12px; }
 .brand-icon { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 8px; background: var(--primary); color: var(--primary-foreground); }
 .brand-icon > svg { width: 34px; height: 34px; }
@@ -193,4 +194,22 @@
   padding-right: max(16px, env(safe-area-inset-right));
   @media (min-width: 600px) { padding-left: 24px; padding-right: 24px; }
   @media (min-width: 1024px) { padding-left: 32px; padding-right: 32px; }
+}
+
+@keyframes demo-total-change {
+  from { transform: translateY(3px); color: var(--primary); }
+  to { transform: translateY(0); color: var(--foreground); }
+}
+.demo-total { animation: demo-total-change 450ms ease-out; }
+.business-types { perspective: 900px; }
+.business-type { position: relative; transform-origin: center; }
+@keyframes business-float-forward {
+  0%, 100% { transform: translateZ(0) translateY(0); box-shadow: none; }
+  40%, 65% { transform: translateZ(36px) translateY(-5px); box-shadow: var(--shadow-lift); }
+}
+.business-type-active { z-index: 1; animation: business-float-forward 1200ms ease-in-out; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .demo-total { animation: none; }
+  .business-type-active { animation: none; }
 }

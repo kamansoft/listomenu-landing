@@ -1,14 +1,16 @@
 import type { ReactNode, MouseEvent } from "react";
 import { isMobileUserAgent, mailtoUrl, whatsappUrl } from "@/lib/contact";
+import { useScrollAttention } from "@/hooks/use-scroll-attention";
 
 export function WhatsAppLink({ message, className, children }: { message: string; className?: string; children: ReactNode }) {
+  const ref = useScrollAttention();
   // SSR href works everywhere; on click pick WhatsApp Web (desktop) or the app (phone).
   const onClick = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     window.open(whatsappUrl(message, isMobileUserAgent(navigator.userAgent)), "_blank", "noopener");
   };
   return (
-    <a href={whatsappUrl(message, true)} target="_blank" rel="noopener noreferrer" onClick={onClick} className={className}>
+    <a ref={ref} data-whatsapp href={whatsappUrl(message, true)} target="_blank" rel="noopener noreferrer" onClick={onClick} className={className}>
       {children}
     </a>
   );

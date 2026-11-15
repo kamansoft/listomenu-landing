@@ -1,6 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { BrandLockup } from "@/components/brand/logo";
+import { useVisitorLocation } from "@/components/landing/VisitorLocation";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -20,12 +21,13 @@ export const Route = createFileRoute("/")({
   component: LanguageGate,
 });
 
-// Spanish is the default language; English stays available via the switch.
+// Prerender a stable fallback, then choose the language using the visitor's country.
 function LanguageGate() {
   const navigate = useNavigate();
+  const { ready, preferredLanguage } = useVisitorLocation();
   useEffect(() => {
-    navigate({ to: "/$lang", params: { lang: "es" }, replace: true });
-  }, [navigate]);
+    if (ready) void navigate({ to: "/$lang", params: { lang: preferredLanguage }, replace: true });
+  }, [navigate, ready, preferredLanguage]);
   return (
     <main className="flex min-h-dvh flex-col items-center justify-center gap-6 bg-background p-4">
       <BrandLockup />
